@@ -17,5 +17,7 @@ Repos "BJUTHelper"  contains tree types project, WP8.1, UWP and Xamarin.Forms
 
 此外，在用Xamarin重做工大助手的时候，用到了Xamarin平台许多大神写的库，在这表示感谢！
 
+也感谢在工大助手开发过程中，给予过我帮助的各位！
+
 ##### BR.
 ##### CQ
