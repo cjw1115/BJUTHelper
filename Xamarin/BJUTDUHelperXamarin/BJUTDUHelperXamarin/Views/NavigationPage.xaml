@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  xmlns:converters="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+                  xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+                  x:Class="BJUTDUHelperXamarin.Views.NavigationPage"
+                  Title="工大助手">
+    <MasterDetailPage.Master>
+        <ContentPage Title="NavigationList" Icon="hamburger.png"  BackgroundColor="{StaticResource BJUTDUHelperMainBackground}">
+            <ContentPage.Resources>
+                <ResourceDictionary>
+                    <converters:BoolToVisibleConverter x:Key="FalseToDisplayConverter"  TrueToDisplay="False"/>
+                    <Style TargetType="Label">
+                        <Setter Property="TextColor" Value="{StaticResource BJUTDUHelperFirstTextForground}"></Setter>
+                    </Style>
+                </ResourceDictionary>
+            </ContentPage.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                    <Grid HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="wifibg.png" Aspect="AspectFill"></Image>
+                        <Grid IsVisible="{Binding IsSignedIn,Mode=OneWay}" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <StackLayout 
+                            Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="End" Margin="18,0,0,8">
+                                <Label FontSize="Large" TextColor="{StaticResource BJUTDUHelperMainTitleForeground}" Text="{Binding BJUTHelperUserInfo.NickName}"/>
+                                <Label FontSize="Small" TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding BJUTHelperUserInfo.College}"/>
+                                <Label FontSize="Small" TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding BJUTHelperUserInfo.Username}"/>
+                            </StackLayout>
+                            <mycontrols:LinkButton Command="{Binding LogoutCommand}" WidthRequest="30" Text="注销" Margin="0,0,18,0" 
+                                                   HorizontalOptions="End" VerticalOptions="End"/>
+                        </Grid>
+                        <Button x:Name="btnLogin" Text="登录" Margin="8,0" WidthRequest="100"
+                                TextColor="{StaticResource BJUTDUHelperFirstTextForground}" 
+                                HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" 
+                                IsVisible="{Binding IsSignedIn,Mode=OneWay,Converter={StaticResource FalseToDisplayConverter}}"></Button>
+                    </Grid>
+                    <ListView x:Name="naviListView" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SeparatorVisibility="None"
+                    ItemsSource="{Binding NavigationItems}" BackgroundColor="Transparent"
+                    RowHeight="60">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label FontSize="24" WidthRequest="60" HeightRequest="60" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                               FontFamily="{StaticResource FontAwesome}" Text="{Binding Icon}" ></Label>
+                                        <Label Grid.Column="1" HeightRequest="60"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand"   Text="{Binding Title}"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <StackLayout x:Name="aboutLayout" Orientation="Horizontal" Grid.Row="1" HeightRequest="60">
+                    <Label FontSize="24" WidthRequest="60" HeightRequest="60" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                               FontFamily="{StaticResource FontAwesome}" Text="&#xf05a;" ></Label>
+                    <Label Text="关于" HeightRequest="60" VerticalOptions="Center" VerticalTextAlignment="Center" ></Label>
+        </StackLayout>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+        <NavigationPage x:Name="naviPage">
+            <x:Arguments>
+                <views:MyBjutPage />
+            </x:Arguments>
+            <NavigationPage.BarTextColor>
+                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource BJUTDUHelperMainBackground}"  Android="{StaticResource BJUTDUHelperFirstTextForground}">
+                </OnPlatform>
+            </NavigationPage.BarTextColor>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

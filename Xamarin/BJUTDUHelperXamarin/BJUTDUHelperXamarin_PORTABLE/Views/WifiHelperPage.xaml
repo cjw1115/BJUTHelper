@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.WifiHelperPage"
+             views:LoadedCommand="{Binding LoadedCommand}"
+             Title="网络助手">
+
+  <Grid>
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0" BackgroundColor="White" >
+        <Grid.RowDefinitions>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+          <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition></ColumnDefinition>
+          <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+          <ResourceDictionary>
+            <Style TargetType="Label">
+              <Setter Property="VerticalOptions" Value="Center"></Setter>
+              <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            </Style>
+          </ResourceDictionary>
+        </Grid.Resources>
+        <Label Grid.Row="0" HorizontalOptions="Center" Grid.Column="0" Text="套餐类型:" TextColor="Black"> </Label>
+        <Label Grid.Row="0" HorizontalOptions="Start" Grid.Column="1" Text="{Binding AccountInfo.FluPackageType}" TextColor="Black"> </Label>
+
+        <Label Grid.Row="1" HorizontalOptions="Center" Grid.Column="0" Text="套餐总量:" TextColor="Black"> </Label>
+        <Label Grid.Row="1" HorizontalOptions="Start" Grid.Column="1" Text="{Binding AccountInfo.TotalFlu}" TextColor="Black"> </Label>
+
+        <Label Grid.Row="2" HorizontalOptions="Center" Grid.Column="0" Text="已使用量:" TextColor="Black"> </Label>
+        <Label Grid.Row="2" HorizontalOptions="Start" Grid.Column="1" Text="{Binding AccountInfo.UsedFlu}" TextColor="Black"> </Label>
+
+        <Label Grid.Row="3" HorizontalOptions="Center" Grid.Column="0" Text="账户余额:" TextColor="Black"> </Label>
+        <Label Grid.Row="3" HorizontalOptions="Start" Grid.Column="1" Text="{Binding AccountInfo.Balance}" TextColor="Black"> </Label>
+      </Grid>
+      <Grid Grid.Row="1" BackgroundColor="Gray" >
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto" />
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="1" Text="登录" TextColor="White" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Green" Command="{Binding LoginCommand}" ></Button>
+        <Button Grid.Row="1" Text="注销" TextColor="White" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Red" Command="{Binding LogoutCommand}" IsVisible="{Binding IsRegisted}"></Button>
+
+      </Grid>
+    </Grid>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+   
+</ContentPage>

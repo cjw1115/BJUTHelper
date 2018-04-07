@@ -1,0 +1,181 @@
+﻿<Page
+    x:Class="BJUTHelper.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTHelper"
+    xmlns:Inteactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+    <Page.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="White" Offset="0.2"/>
+            <GradientStop Color="Silver" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
+    <Grid x:Name="mainGrid" HorizontalAlignment="Stretch" >
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="White" Offset="0.2"/>
+                <GradientStop Color="Silver" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style x:Key="ButtonStyle" TargetType="Button">
+                    <Setter Property="Margin" Value="10" ></Setter>
+                    <Setter Property="FontSize" Value="10"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                    <Setter Property="FontSize" Value="32"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}"/>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+            <Button Style="{StaticResource ResourceKey=ButtonStyle}" Grid.Column="0" Grid.Row="0"  x:Name="btnNetAuthentication" Click="btnNetAuthentication_Click"   >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xE701;" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <Inteactivity:Interaction.Behaviors>
+                                <local:ButtonFocusBehavior></local:ButtonFocusBehavior>
+                            </Inteactivity:Interaction.Behaviors>
+                        </TextBlock>
+                        <TextBlock Padding="0,20,0,0" FontFamily="Microsoft Yahei" FontSize="15" HorizontalAlignment="Center" Text="无线认证"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource ResourceKey=ButtonStyle}" Grid.Column="1" Grid.Row="0"  x:Name="btnNicRegist" Click="btnNicRegist_Click"  >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xE12B;" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <Inteactivity:Interaction.Behaviors>
+                                <local:ButtonFocusBehavior></local:ButtonFocusBehavior>
+                            </Inteactivity:Interaction.Behaviors>
+                        </TextBlock>
+                        <TextBlock Padding="0,20,0,0" FontFamily="Microsoft Yahei" FontSize="15" HorizontalAlignment="Center" Text="网关注册"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource ResourceKey=ButtonStyle}" Grid.Column="2" Grid.Row="0"  x:Name="btnJWGL"    Click="btnJWGL_Click" >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xE185;" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <Inteactivity:Interaction.Behaviors>
+                                <local:ButtonFocusBehavior></local:ButtonFocusBehavior>
+                            </Inteactivity:Interaction.Behaviors></TextBlock>
+                        <TextBlock Padding="0,20,0,0" FontFamily="Microsoft Yahei" FontSize="15" HorizontalAlignment="Center" Text="教务管理"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource ResourceKey=ButtonStyle}" Grid.Column="0" Grid.Row="1"  x:Name="btnIDCard"  Click="btnIDCard_Click" >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xE1E1;" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <Inteactivity:Interaction.Behaviors>
+                                <local:ButtonFocusBehavior></local:ButtonFocusBehavior>
+                            </Inteactivity:Interaction.Behaviors>
+                        </TextBlock>
+                        <TextBlock Padding="0,20,0,0" FontFamily="Microsoft Yahei" FontSize="15" HorizontalAlignment="Center" Text="一卡通"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource ResourceKey=ButtonStyle}" Grid.Column="1" Grid.Row="1"  x:Name="btnMore" Click="btnMore_Click" >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xE170;" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                            <Inteactivity:Interaction.Behaviors>
+                                <local:ButtonFocusBehavior></local:ButtonFocusBehavior>
+                            </Inteactivity:Interaction.Behaviors>
+                        </TextBlock>
+                        <TextBlock Padding="0,20,0,0" FontFamily="Microsoft Yahei" FontSize="15" HorizontalAlignment="Center" Text="关于"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            
+            <Grid Grid.Row="3" Grid.Column="2"  >
+                <Button Style="{StaticResource ResourceKey=ButtonStyle}" Click="btnTips_Click"  x:Name="btnTips" Background="Transparent"  Padding="0" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">  
+                    <Button.Content>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="&#xEA80;"  FontFamily="Segoe MDL2 Assets" FontSize="32" RenderTransformOrigin="0.5,0.5">
+                                <Inteactivity:Interaction.Behaviors>
+                                <local:ButtonFocusBehavior></local:ButtonFocusBehavior>
+                            </Inteactivity:Interaction.Behaviors>
+                            </TextBlock>
+                            <TextBlock Padding="0,20,0,0" FontFamily="Microsoft Yahei" FontSize="15" HorizontalAlignment="Center" Text="通知中心"></TextBlock>
+                        </StackPanel>
+                        
+                    </Button.Content>
+                </Button>
+                
+            </Grid>
+           
+
+        </Grid>
+
+    </Grid>
+    </Page>

@@ -1,0 +1,74 @@
+﻿<UserControl
+    x:Class="BJUTDUHelper.Control.ScheduleBlock"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTDUHelper.Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="mainGrid" Tapped="Grid_Tapped" Margin="0" Padding="0">
+        <Rectangle Fill="{x:Bind BlockBrush,Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Rectangle>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{ThemeResource BJUTDUHelperBaseForegroundThemeColor}"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock HorizontalAlignment="Center" FontSize="12" Text="{x:Bind Course.CourseName,Mode=OneWay}" TextWrapping="WrapWholeWords"></TextBlock>
+            <!--<TextBlock Opacity="0.7" HorizontalAlignment="Center" FontSize="9" Text="{x:Bind Course.Teacher,Mode=OneWay}" TextWrapping="WrapWholeWords"></TextBlock>-->
+            <TextBlock Opacity="0.7" HorizontalAlignment="Center" FontSize="9" Text="{x:Bind Course.Room,Mode=OneWay}" TextWrapping="WrapWholeWords"></TextBlock>
+        </StackPanel>
+        <FlyoutBase.AttachedFlyout>
+            
+            <MenuFlyout>
+                <MenuFlyout.MenuFlyoutPresenterStyle>
+                    <Style TargetType="MenuFlyoutPresenter">
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        
+                    </Style>
+                </MenuFlyout.MenuFlyoutPresenterStyle>
+                <MenuFlyoutItem  > 
+                     
+                    <MenuFlyoutItem.Template>
+                        <ControlTemplate>
+
+                            <Grid >
+                                <Grid Background="Black" Opacity="0.5"></Grid>
+                                <StackPanel  Margin="4,0,4,0">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{ThemeResource BJUTDUHelperBaseForegroundThemeColor}"></Setter>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="课程：">
+                                    <Run Text="{Binding CourseName}"></Run>
+                                    </TextBlock>
+                                    <TextBlock Text="教室：">
+                                    <Run Text="{Binding Room}"></Run>
+                                    </TextBlock>
+                                    <TextBlock Text="周次：">
+                                    <Run Text="{Binding BeginWeek}"></Run>
+                                    <Run Text="-"></Run>
+                                    <Run Text="{Binding EndWeek}"></Run>
+                                    </TextBlock>
+                                    <TextBlock Text="节次：">
+                                    <Run Text="{Binding BeginClass}"></Run>
+                                    <Run Text="-"></Run>
+                                    <Run Text="{Binding EndClass}"></Run>
+                                    </TextBlock>
+                                    <TextBlock Text="教师：">
+                                    <Run Text="{Binding Teacher}"></Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </MenuFlyoutItem.Template>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+        </FlyoutBase.AttachedFlyout>
+    </Grid>
+</UserControl>

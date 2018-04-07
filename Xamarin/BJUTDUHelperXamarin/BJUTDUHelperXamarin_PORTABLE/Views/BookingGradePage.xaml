@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             x:Class="BJUTDUHelperXamarin.Views.BookingGradePage"
+             Title="成绩推送">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:StringToVisibleConverter x:Key="StringToVisibleConverter"></converter:StringToVisibleConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <StackLayout Orientation="Vertical" Margin="10,4,10,4">
+                <Label Text="注意："></Label>
+                <Label Text="*订阅成绩推送功能需要上传你的（学号）和（教务密码）" TextColor="Red"></Label>
+                <Label Text="*学号和密码可以在 个人中心-教务管理 处设置" TextColor="Red"></Label>
+                <Label Text="*服务器每隔一段时间会主动帮你查询成绩，然后推送到你的手机（需要允许工大助手推送消息）"></Label>
+            </StackLayout>
+            
+        </Grid>
+        <Grid Grid.Row="1" >
+            <StackLayout Orientation="Vertical">
+                <Label Text="已成功订阅人数" HorizontalOptions="Center" VerticalOptions="Center" 
+                   IsVisible="{Binding ServerStatus,Mode=OneWay,Converter={StaticResource StringToVisibleConverter}}"></Label>
+                <Label Text="{Binding ServerStatus,Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Green" FontSize="26"></Label>
+            </StackLayout>
+            
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Grid.Row="1" Text="订阅" TextColor="White" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Green"  Command="{Binding BookingGradeCommand}" ></Button>
+            <Button Grid.Row="1" Text="取消订阅" TextColor="White" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Red" Command="{Binding UnBookingGradeCommand}" IsVisible="{Binding HasBookingGrade,Mode=OneWay}"></Button>
+        </Grid>
+        <mycontrols:ProgressTipBar Grid.RowSpan="3" IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+    </Grid>
+</ContentPage>

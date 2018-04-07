@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="BJUTDUHelperXamarin.Controls.IconButton"
+             >
+    <ContentView.Content>
+        <Grid x:Name="rootGrid" InputTransparent="False" Margin="4">
+        <Grid.RowDefinitions>
+          <RowDefinition></RowDefinition>
+          <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="boxViewTapped"></TapGestureRecognizer>
+        </Grid.GestureRecognizers>
+
+            <Label x:Name="img"  Grid.Row="0" FontSize="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontFamily="{StaticResource FontAwesome}" Text="{Binding Source}" WidthRequest="64" HeightRequest="64"></Label>
+            <Label x:Name="text" Margin="4" TextColor="#ff5b5656"
+               Text="{Binding Text}" Grid.Row="1"  
+               VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+            <BoxView Grid.Row="0" Grid.RowSpan="2"  x:Name="boxView" Color="Black" Opacity="0" InputTransparent="True"></BoxView>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

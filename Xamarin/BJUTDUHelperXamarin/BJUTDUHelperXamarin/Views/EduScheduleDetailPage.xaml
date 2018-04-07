@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.EduScheduleDetailPage"
+             Title="课程详情">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converter:ParityConverter x:Key="ParityConverter"></converter:ParityConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+    <TableView Intent="Form" BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <TableRoot>
+      <TableSection Title="课程">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding ScheduleItem.CourseName,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection  Title="教室">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding ScheduleItem.Room,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="节次">
+        <ViewCell>
+          <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="{Binding ScheduleItem.BeginClass,Mode=OneWay}"></Label>
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="-"></Label>
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="{Binding ScheduleItem.EndClass,Mode=OneWay}"></Label>
+          </StackLayout>
+        </ViewCell>
+      </TableSection>
+      <TableSection Title="周次">
+        <ViewCell>
+          <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
+          
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="{Binding ScheduleItem.BeginWeek,Mode=OneWay}"></Label>
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="-"></Label>
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="{Binding ScheduleItem.EndWeek,Mode=OneWay}"></Label>
+            <Label TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Text="{Binding ScheduleItem.Parity,Mode=OneWay,Converter={StaticResource ParityConverter}}"></Label>
+          </StackLayout>
+        </ViewCell>
+      </TableSection>
+      <TableSection Title="教师">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding ScheduleItem.Teacher,Mode=OneWay}"></TextCell>
+      </TableSection>
+    </TableRoot>
+  </TableView>
+</ContentPage>

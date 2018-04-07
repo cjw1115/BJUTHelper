@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views.MyBJUT"
+             xmlns:models="clr-namespace:BJUTDUHelperXamarin.Models.MyBJUT"
+             x:Class="BJUTDUHelperXamarin.Views.MyBJUT.LoginPage"
+             Title="登录"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:EnumConverter x:Key="GenderConverter" x:TypeArguments="models:Gender"/>
+
+            <converter:EnumConverter x:Key="CollegeConverter" x:TypeArguments="models:BJUTCollege"/>
+            <Style TargetType="mycontrols:TextBox">
+                <Setter Property="PlaceholderColor" Value="{StaticResource BJUTDUHelperTextHintForground}"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="HorizontalOptions" Value="Fill"></Setter>
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+            </Style>
+
+
+            <Style TargetType="Grid">
+                <Setter Property="RowSpacing" Value="0"/>
+                <Setter Property="ColumnSpacing" Value="0"/>
+            </Style>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid >
+        <Image HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill" Source="wifibg.png"></Image>
+        <Grid x:Name="gridLogin" IsVisible="True"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <ScrollView>
+                    <StackLayout   Grid.Row="0" Margin="4,0" HorizontalOptions="Center" WidthRequest="200" VerticalOptions="Center" Orientation="Vertical">
+                        <mycontrols:TextBox Grid.Row="0" Placeholder="用户名（学号）" Text="{Binding LoginModel.Username,Mode=TwoWay}" />
+                        <mycontrols:TextBox Margin="0,8,0,0" Grid.Row="1" IsPassword="True" Placeholder="密码" Text="{Binding LoginModel.Password,Mode=TwoWay}"/>
+                        <Button Margin="0,16,0,0" VerticalOptions="Start" BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" TextColor="{StaticResource BJUTDUHelperFirstTextForground}" 
+                        Text="登录" Command="{Binding LoginCommand}"/>
+                        <mycontrols:LinkButton  x:Name="btnToRetrieve" Margin="0,8,0,0" Grid.Row="1" Text="找回密码" HorizontalOptions="Center"></mycontrols:LinkButton>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <Grid Grid.Row="1" >
+                <BoxView BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="Start" Margin="20,8"></BoxView>
+                <mycontrols:LinkButton x:Name="btnToRegist" HorizontalOptions="Center"  WidthRequest="200" Text="注册"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="gridRegist" IsVisible="False" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <ScrollView Orientation="Vertical">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" Margin="0,8,0,0">
+                        <mycontrols:TextBox Margin="0,8,0,0" Placeholder="用户名（学号）" Text="{Binding RegistModel.Username,Mode=TwoWay}"/>
+                        <Picker Margin="0,8,0,0" Title="学院"  SelectedItem="{Binding RegistModel.College,Mode=TwoWay,Converter={StaticResource CollegeConverter}}"
+                        ItemsSource="{Binding CollegeList,Mode=Default}"/>
+                        <mycontrols:TextBox Margin="0,8,0,0" x:Name="tbRegPassword"  Placeholder="密码" IsPassword="True"  Text="{Binding RegistModel.Password,Mode=TwoWay}"/>
+                        <Grid Margin="0,8,0,0">
+                            <BoxView x:Name="borderRegPasswordConfirm" IsVisible="False" Margin="-1" BackgroundColor="Red"/>
+                            <mycontrols:TextBox x:Name="tbRegPasswordConfirm" Placeholder="重复密码" IsPassword="True" Text="{Binding RegistModel.PasswordConfirm,Mode=TwoWay}"/>
+                        </Grid>
+                        <mycontrols:TextBox Margin="0,8,0,0" Placeholder="昵称"  Text="{Binding RegistModel.NickName,Mode=TwoWay}"/>
+                        <Picker Margin="0,8,0,0"  Title="性别" SelectedItem="{Binding RegistModel.Gender,Mode=TwoWay,Converter={StaticResource GenderConverter}}"
+                        ItemsSource="{Binding GenderList,Mode=Default}"/>
+
+                        <Button Margin="0,16,0,0" TextColor="{StaticResource BJUTDUHelperFirstTextForground}"  Text="注册" BackgroundColor="{StaticResource BJUTDUHelperMainBackground}"
+                        Command="{Binding RegistCommand}"></Button>
+                    </StackLayout>
+                </ScrollView>
+                
+            </Grid>
+
+            <Grid Grid.Row="1"  >
+                <BoxView BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="Start" Margin="20,8"/>
+                <mycontrols:LinkButton x:Name="btnBackLogin" WidthRequest="200" Text="返回登录" />
+            </Grid>
+        </Grid>
+        <Grid x:Name="gridRetrieve" IsVisible="False" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <ScrollView Orientation="Vertical">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" Margin="0,8,0,0">
+                        <mycontrols:TextBox Margin="0,8,0,0" Placeholder="用户名（学号）" Text="{Binding RetrieveModel.Username,Mode=TwoWay}"/>
+                        <mycontrols:TextBox Margin="0,8,0,0" Placeholder="新密码" IsPassword="True"  Text="{Binding RetrieveModel.Password,Mode=TwoWay}"/>
+                        <mycontrols:TextBox Margin="0,8,0,0" Placeholder="工大教务系统密码" IsPassword="True" Text="{Binding RetrieveModel.VarifyPassword,Mode=TwoWay}"/>
+
+                        <Button Margin="0,16,0,0" TextColor="{StaticResource BJUTDUHelperFirstTextForground}"  Text="重置" BackgroundColor="{StaticResource BJUTDUHelperMainBackground}"
+                        Command="{Binding RetrieveCommand}"></Button>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+
+            <Grid Grid.Row="1"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Margin="20,4" Orientation="Vertical">
+                    <Label FontSize="10" TextColor="Red" Text="为了验证你的学生身份，需要提供工大教务管理系统密码。工大助手承诺该密码只用于验证身份，不做其他用途；"></Label>
+                    <Label FontSize="10" TextColor="Red" Text="如有疑惑，请在“关于”页面反馈"></Label>
+                </StackLayout>
+                <Grid Grid.Row="1">
+                    <BoxView BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="Start" Margin="20,8"/>
+                    <mycontrols:LinkButton x:Name="btnBackLogin_Retrieve" WidthRequest="200" Text="返回登录" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+    </Grid>
+</ContentPage>

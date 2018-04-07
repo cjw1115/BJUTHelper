@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:BJUTDUHelperXamarin.Behaviors"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:converters="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.CampusCardPage"
+             views:LoadedCommand="{Binding LoadedCommand}"
+             Title="一卡通助手"
+             >
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:SelectedEventArgToParamConverter x:Key="SelectedEventArgToParamConverter"></converters:SelectedEventArgToParamConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <Grid >
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition></RowDefinition>
+      </Grid.RowDefinitions>
+      <Grid x:Name="gridIDCardInfo" Grid.Row="0" Margin="12,8,12,8" VerticalOptions="Center" >
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+                    <Label Text="&#xf2be;" FontSize="45" FontFamily="{StaticResource FontAwesome}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                </Grid>
+        <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
+          <StackLayout Orientation="Horizontal">
+            <Label Text="姓名:"></Label>
+            <Label Text="{Binding CampusCardInfo.Name,Mode=OneWay}"></Label>
+          </StackLayout>
+          <StackLayout Orientation="Horizontal">
+            <Label Text="性别:"></Label>
+            <Label Text="{Binding CampusCardInfo.Gender,Mode=OneWay}"></Label>
+          </StackLayout>
+          <StackLayout Orientation="Horizontal">
+            <Label Text="单位:"></Label>
+            <Label Text="{Binding CampusCardInfo.DepartmentName,Mode=OneWay}"></Label>
+          </StackLayout>
+          <StackLayout Orientation="Horizontal">
+            <Label Text="卡号:"></Label>
+            <Label Text="{Binding CampusCardInfo.Username,Mode=OneWay}"></Label>
+          </StackLayout>
+        </StackLayout>
+      </Grid>
+      <Grid x:Name="gridCashinfo" Grid.Row="1" Margin="12,8,12,8" >
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Orientation="Horizontal" Margin="4">
+          <Label   Text="绑定卡号：" VerticalOptions="Center"></Label>
+          <Entry   VerticalOptions="Center" HorizontalOptions="FillAndExpand" Text="{Binding CampusCardInfo.smtAccounts,Mode=OneWay}" ></Entry>
+        </StackLayout>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="4">
+          <Label  VerticalOptions="Center" Text="一卡通余额：" />
+          <Entry  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" Text="{Binding CampusCardInfo.balance,Mode=OneWay}" ></Entry>
+        </StackLayout>
+        <Grid Grid.Row="2" Margin="4"  >
+
+          <Button HorizontalOptions="FillAndExpand"
+              Text="一键解挂"  TextColor="White" BackgroundColor="Green"
+              Command="{Binding FoundCommand}"></Button>
+          <Button x:Name="btnLost" HorizontalOptions="FillAndExpand"
+             Text="一键挂失" TextColor="White" BackgroundColor="Red"
+             Command="{Binding LostCommand}">
+            <Button.IsVisible>
+              <Binding Path="CampusCardInfo.smtEndcodeTxt" Mode="OneWay">
+                <Binding.Converter>
+                  <converters:CampusCardStatusConverter></converters:CampusCardStatusConverter>
+                </Binding.Converter>
+              </Binding>
+            </Button.IsVisible>
+          </Button>
+        </Grid>
+      </Grid>
+      <ListView x:Name="listTransaction"  Grid.Row="2" Margin="12,4,12,4"
+                 ItemsSource="{Binding TransactionList,Mode=OneWay}"
+                SeparatorVisibility="None"
+                BackgroundColor="Transparent">
+        <ListView.Behaviors>
+          <b:ListViewSelectedItemBehavior Command="{Binding ItemClickedCommand}" Converter="{StaticResource SelectedEventArgToParamConverter}" />
+        </ListView.Behaviors>
+        <ListView.Header>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="3*"/>
+              <ColumnDefinition Width="1*"/>
+              <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label  VerticalOptions="Center" FontSize="20" Grid.Column="0" Text="时间"/>
+            <Label  VerticalOptions="Center" FontSize="20" Grid.Column="1" Text="金额" />
+            <Label  VerticalOptions="Center" FontSize="20" Grid.Column="2" Text="余额" />
+          </Grid>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid >
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="3*"/>
+                  <ColumnDefinition Width="1*"/>
+                  <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" Grid.Column="0" Text="{Binding smtDealDateTimeTxt,Mode=OneWay}"/>
+                <Label VerticalOptions="Center" Grid.Column="1" Text="{Binding smtTransMoney,Mode=OneWay}"  />
+                <Label VerticalOptions="Center" Grid.Column="2" Text="{Binding smtOutMoney,Mode=OneWay}"/>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+
+        </ListView.ItemTemplate>
+      </ListView>
+
+    </Grid>
+        <Grid x:Name="gridUseful" IsVisible="{Binding IsDisable}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label FontFamily="{StaticResource FontAwesome}" Text="&#xf1d8;" TextColor="Gray"  FontSize="100" HorizontalOptions="Center"/>
+            </StackLayout>
+            <Label TextColor="Gray" VerticalOptions="End" HorizontalOptions="Start" Margin="8,4,8,4" Text="The feature is under construction..." FontSize="Small"></Label>
+        </Grid>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+</ContentPage>

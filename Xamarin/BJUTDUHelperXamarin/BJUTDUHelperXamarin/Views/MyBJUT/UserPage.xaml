@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views.MyBJUT"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             xmlns:b="clr-namespace:BJUTDUHelperXamarin.Behaviors"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.MyBJUT.UserPage"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             views:LoadedCommand="{Binding LoadedCommand}"
+             Title="个人中心">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BoolToVisibleConverter x:Key="FalseToDisplayConverter"  TrueToDisplay="False"/>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BJUTDUHelperSecondTextForground}"></Setter>
+            </Style>
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+
+    <Grid HeightRequest="140" BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Padding="20" BackgroundColor="{StaticResource BJUTDUHelperMainTitleForeground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Image WidthRequest="100" HeightRequest="100" Source="{Binding BJUTHelperUserInfo.Avatar,Converter={StaticResource AvatarConverter}}" HorizontalOptions="Center" VerticalOptions="Start" Aspect="AspectFill"/>
+            </Grid>
+            <StackLayout Margin="20,0,0,0" Orientation="Vertical" Grid.Column="1">
+                <Label FontSize="Large" Text="{Binding BJUTHelperUserInfo.NickName}" />
+                <Label Margin="0,10,0,0" FontSize="12" Text="{Binding BJUTHelperUserInfo.Username}" />
+                <Label Margin="0,10,0,0" FontSize="12" Text="{Binding BJUTHelperUserInfo.College}" />
+            </StackLayout>
+        </Grid>
+        <Grid HeightRequest="140" HorizontalOptions="Fill" VerticalOptions="Fill" IsVisible="{Binding IsSignedIn,Mode=OneWay,Converter={StaticResource FalseToDisplayConverter}}">
+            <Image HorizontalOptions="Fill" VerticalOptions="Fill" Source="wifibg.png" Aspect="AspectFill"></Image>
+            <Button x:Name="btnLogin" Text="登录" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{StaticResource BJUTDUHelperFirstTextForground}" 
+                        BackgroundColor="{StaticResource BJUTDUHelperMainBackground}"
+                        Command="{Binding LoginCommand}"></Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ScrollView Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <mycontrols:ItemsControl>
+                    <Grid Padding="20,0" HeightRequest="60" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <mycontrols:RippleView Command="{Binding ItemClickCommand}" CommandParameter="编辑资料" Margin="-20,0,-20,1" BorderWidth="0" HorizontalOptions="Fill" VerticalOptions="Fill"></mycontrols:RippleView>
+                        <Label InputTransparent="True" VerticalOptions="Center" Text="编辑资料"/>
+                        <BoxView HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />
+                       
+                    </Grid>
+                    <Grid Padding="20,0" HeightRequest="60" HorizontalOptions="Fill" VerticalOptions="Start">
+
+                        <mycontrols:RippleView Command="{Binding ItemClickCommand}" CommandParameter="账号管理"  Margin="-20,0,-20,1" BorderWidth="0" HorizontalOptions="Fill" VerticalOptions="Fill"></mycontrols:RippleView>
+                        <Label VerticalOptions="Center" Text="账号管理" InputTransparent="True"/>
+                        <BoxView HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />
+                        
+                    </Grid>
+
+                    <Grid Padding="20,0" HeightRequest="60" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <mycontrols:RippleView Grid.ColumnSpan="2" Margin="-20,0,-20,0" BorderWidth="0" HorizontalOptions="Fill" VerticalOptions="Fill"></mycontrols:RippleView>
+                        <StackLayout Orientation="Vertical" VerticalOptions="Center" Spacing="0" Padding="0" Margin="0" InputTransparent="True">
+                            <Label InputTransparent="True"  VerticalOptions="Center" Text="外网模式"/>
+                            <Label FontSize="8" TextColor="{StaticResource BJUTDUHelperSecondTextForground}" InputTransparent="True" VerticalOptions="Center" Text="打开后可随时访问教务相关内容"></Label>
+                        </StackLayout>
+                        
+                        <Switch x:Name="switchProxy" views:UserPage.TappedCommand="{Binding TappedCommand}" IsToggled="{Binding IsProxy,Mode=TwoWay}" VerticalOptions="Center" Grid.Column="1"/>
+                        <!--<BoxView Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />-->
+                    </Grid>
+                </mycontrols:ItemsControl>
+            </ScrollView>
+
+            
+        </Grid>
+    </Grid>
+</ContentPage>

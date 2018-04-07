@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="BJUTDUHelperXamarin.Controls.LikeButton"
+             BackgroundColor="Transparent">
+    <View.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NormalHeartColor">#ffadadad</Color>
+            <Color x:Key="SelectedHeartColor">#ffde3434</Color>
+        </ResourceDictionary>
+    </View.Resources>
+    <Grid HeightRequest="20" MinimumWidthRequest="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" x:Name="lbHeart" TextColor="{StaticResource NormalHeartColor}" Text="&#xf004;" FontFamily="{StaticResource FontAwesome}" VerticalOptions="Center"/>
+        <Label Grid.Column="1" x:Name="lbText" TextColor="{StaticResource NormalHeartColor}" VerticalOptions="Center"></Label>
+    </Grid>
+</ContentView>

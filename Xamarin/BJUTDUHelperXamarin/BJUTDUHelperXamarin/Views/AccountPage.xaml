@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             xmlns:b="clr-namespace:BJUTDUHelperXamarin.Behaviors"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.AccountPage"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             views:LoadedCommand="{Binding LoadedCommand}"
+            Title="账号管理">
+
+    <TableView Intent="Menu" BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <TableRoot >
+            <TableSection Title="信息门户" >
+                <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Command="{Binding ItemClickCommand}" CommandParameter="信息门户">
+                    <TextCell.Text>
+                        <Binding Path="InfoUser.Username" >
+                            <Binding.Converter>
+                                <converter:EmptyTipConverter   PlaceHolderValue="点击此处添加账号"/>
+                            </Binding.Converter>
+                        </Binding>
+                    </TextCell.Text>
+                </TextCell>
+            </TableSection>
+            <TableSection Title="教务管理">
+                <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Command="{Binding ItemClickCommand}" CommandParameter="教务管理">
+                    <TextCell.Text>
+                        <Binding Path="EduUser.Username" >
+                            <Binding.Converter>
+                                <converter:EmptyTipConverter   PlaceHolderValue="点击此处添加账号"/>
+                            </Binding.Converter>
+                        </Binding>
+                    </TextCell.Text>
+                </TextCell>
+            </TableSection>
+            <TableSection Title="图书馆">
+                <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Command="{Binding ItemClickCommand}" CommandParameter="图书馆">
+                    <TextCell.Text>
+                        <Binding Path="LibUser.Username" >
+                            <Binding.Converter>
+                                <converter:EmptyTipConverter   PlaceHolderValue="点击此处添加账号"/>
+                            </Binding.Converter>
+                        </Binding>
+                    </TextCell.Text>
+                </TextCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

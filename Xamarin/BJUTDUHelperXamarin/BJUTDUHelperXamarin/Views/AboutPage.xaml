@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime.InteropServices"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:mycontrol="clr-namespace:BJUTDUHelperXamarin.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.AboutPage"
+             Title="关于"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource BJUTDUHelperMainBackground}"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource BJUTDUHelperFirstTextForground}"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BJUTDUHelperSecondTextForground}"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <Grid HorizontalOptions="Center"  >
+            <Grid.RowDefinitions>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto" ></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="logo.png" HeightRequest="160"></Image>
+
+            <Label Grid.Row="1" Text="{Binding Version,StringFormat='版本 {0}'}" HorizontalOptions="Center"></Label>
+            <!--TextColor="{StaticResource BJUTDUHelperSecondTextForground}"-->
+            <StackLayout Grid.Row="2" Margin="10">
+                <Label TextColor="Black" HorizontalTextAlignment="Center" Text="工大助手，你的校园好帮手"></Label>
+                <Label TextColor="Black" HorizontalTextAlignment="Center" Text="Windows10 PC/Mobile,安卓,iOS">
+                    <Label.IsVisible>
+                        <OnPlatform x:TypeArguments="x:Boolean" >
+                            <OnPlatform.iOS>false</OnPlatform.iOS>
+                            <OnPlatform.Android>true</OnPlatform.Android>
+                        </OnPlatform>
+                    </Label.IsVisible>
+                </Label>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3" Margin="4">
+                <Button Text="反馈"  Command="{Binding FeedCommand}" ></Button>
+                <Button Text="检查更新" Command="{Binding UpdateCommand}">
+                    <Button.IsVisible>
+                        <OnPlatform x:TypeArguments="x:Boolean" >
+                            <OnPlatform.iOS>false</OnPlatform.iOS>
+                            <OnPlatform.Android>true</OnPlatform.Android>
+                        </OnPlatform>
+                    </Button.IsVisible>
+                </Button>
+            </StackLayout>
+            <!--BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" TextColor="{StaticResource BJUTDUHelperFirstTextForground}"-->
+            <Label Grid.Row="4" Text="联系:cjw1115@hotmail.com"   HorizontalOptions="Center"></Label>
+            <!--TextColor="{StaticResource BJUTDUHelperSecondTextForground}"-->
+            <StackLayout Grid.Row="5" HorizontalOptions="Center" VerticalOptions="End">
+                <Label  Text="技术+平台支持"  HorizontalOptions="Center"></Label>
+                <!-- TextColor="{StaticResource BJUTDUHelperMainBackground}"-->
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                    <Image Source="vs.png" HeightRequest="50"></Image>
+                    <Image Source="xamarin.png" HeightRequest="50" ></Image>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

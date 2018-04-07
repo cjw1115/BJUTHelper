@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BJUTDUHelperXamarin.Controls.PhotoPicker"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:portable="clr-namespace:PivotPagePortable;assembly=PivotPagePortable"
+             Title="朋友圈">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid x:Name="gridRoot" BackgroundColor="Black" >
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness" >
+                    <OnPlatform.iOS>0,20,0,0</OnPlatform.iOS>
+                    <OnPlatform.Android>0</OnPlatform.Android>
+                </OnPlatform>
+            </Grid.Margin>
+            <mycontrols:AvartarClipper x:Name="avartarClipper"></mycontrols:AvartarClipper>
+            <Grid HorizontalOptions="Fill" VerticalOptions="Start">
+                <mycontrols:CircleButton x:Name="btnBack" FontSize="Medium" Text="&#xf060;" FontFamily="{StaticResource FontAwesome}" TextColor="White" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="50" HeightRequest="50"  Margin="4" BorderRadius="25" BackgroundColor="Transparent" BorderWidth="0"></mycontrols:CircleButton>
+                <mycontrols:CircleButton x:Name="btnSubmit" FontSize="Medium" Text="&#xf00c;" FontFamily="{StaticResource FontAwesome}" TextColor="White" VerticalOptions="Start" HorizontalOptions="End" WidthRequest="50" HeightRequest="50"  Margin="4" BorderRadius="25" BackgroundColor="Transparent" BorderWidth="0"></mycontrols:CircleButton>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

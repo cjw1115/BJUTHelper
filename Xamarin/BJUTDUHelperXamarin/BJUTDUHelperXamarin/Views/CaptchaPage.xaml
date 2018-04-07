@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.CaptchaPage"
+             Title="验证码"
+              >
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <Grid Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Entry Text="{Binding CaptchaText}" Placeholder="请输入验证码" VerticalOptions="Center" HeightRequest="44"></Entry>
+            <Image x:Name="imgCaptcha" HeightRequest="44" VerticalOptions="Center" views:CaptchaPage.TapCommand="{Binding RefreshCommand}" Grid.Row="0"  Grid.Column="1" Source="{Binding CaptchaSource}"></Image>
+            <!--<Image x:Name="imgCaptcha" HeightRequest="44" VerticalOptions="Center" Grid.Row="0"  Grid.Column="1" Source="{Binding CaptchaSource}"></Image>-->
+            <Button Grid.ColumnSpan="2"  Grid.Row="1" Text="提交" Command="{Binding SubmitCommand}"
+            BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" TextColor="{StaticResource BJUTDUHelperFirstTextForground}"></Button>
+        </Grid>
+    </Grid>
+  
+</ContentPage>

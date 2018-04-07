@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             x:Class="BJUTDUHelperXamarin.Views.FeedBackPage"
+             >
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <Grid Margin="20" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Text="QQ\微信\邮箱：" Grid.Row="0" VerticalOptions="Center" TextColor="{StaticResource BJUTDUHelperMainBackground}"></Label>
+            <Entry Text="{Binding FeedModel.Contact,Mode=TwoWay}" Grid.Row="1" ></Entry>
+
+            <Label Text="问题或建议：" Grid.Row="2" TextColor="{StaticResource BJUTDUHelperMainBackground}" ></Label>
+            <Editor Text="{Binding FeedModel.Content,Mode=TwoWay}" Grid.Row="3" HeightRequest="200"></Editor>
+            <Button Text="提交" Grid.Row="4" HeightRequest="50" Command="{Binding SubmitCommand}" 
+            BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" TextColor="{StaticResource BJUTDUHelperFirstTextForground}"></Button>
+        </Grid>
+        <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+    </Grid>
+    
+</ContentPage>

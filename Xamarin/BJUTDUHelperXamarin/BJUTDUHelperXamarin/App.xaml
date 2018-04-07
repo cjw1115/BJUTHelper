@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        xmlns:conveters="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+                         x:Class="BJUTDUHelperXamarin.App">
+  <prism:PrismApplication.Resources>
+    <ResourceDictionary>
+      <Color x:Key="BJUTDUHelperFirstTextForground">White</Color>
+      <Color x:Key="BJUTDUHelperSecondTextForground">#FF545454</Color>
+            <Color x:Key="BJUTDUHelperTextHintForground">#FFc4c4c4</Color>
+            <Color x:Key="BJUTDUHelperMainBackground">#FF1D91FF</Color>
+      <Color x:Key="BJUTDUHelperSelectedBackground">#FF68b6ff</Color>
+      <Color x:Key="BJUTDUHelperMainTitleForeground">#FF0997F7</Color>
+      <!--<Color x:Key="BJUTDUHelperBlackBackground">#30a8a8a8</Color>-->
+            <Color x:Key="BJUTDUHelperBlackBackground">#fafafa</Color>
+        
+            <Color x:Key="BJUTDUHelperSecondBlackBackground">#30a8a8a8</Color>
+      <Color x:Key="BJUTDUHelperTextGrayForeground">#ff565656</Color>
+
+            <OnPlatform x:Key="FontAwesome" x:TypeArguments="x:String"
+        iOS="FontAwesome"
+        Android="Fonts/fontawesome-webfont.ttf#FontAwesome"
+        WinPhone="/Assets/Fonts/fontawesome-webfont.ttf#FontAwesome" />
+
+            <conveters:AvatarConverter x:Key="AvatarConverter"/>
+        
+        </ResourceDictionary>
+  </prism:PrismApplication.Resources>
+
+
+</prism:PrismApplication>

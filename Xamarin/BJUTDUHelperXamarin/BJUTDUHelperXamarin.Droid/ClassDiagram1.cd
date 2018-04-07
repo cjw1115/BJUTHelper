@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BJUTDUHelperXamarin.Droid.NativeControls.ProgressRing" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ProgressRing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Droid.MainActivity">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Droid.AndroidInitializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>MainActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Droid.MainApplication" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAgAMAAAAAAAAAgAAAAAAAACAAAAAAAAAAAIAEEAA=</HashCode>
+      <FileName>MainApplication.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Droid.Resource">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Color" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Drawable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Integer" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Interpolator" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Attribute" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Boolean" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Dimension" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Layout" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Id" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Animation" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.String" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Style" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="BJUTDUHelperXamarin.Droid.Resource.Styleable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Droid.SplashActivity" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SplashActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Droid.Services.ApplicationInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ApplicationInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BJUTDUHelperXamarin.Services.SQLite_Android" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Services\SQLite_Android.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

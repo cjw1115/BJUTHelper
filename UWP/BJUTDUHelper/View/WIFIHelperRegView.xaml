@@ -1,0 +1,129 @@
+﻿<Page
+    x:Class="BJUTDUHelper.View.WIFIHelperRegView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTDUHelper.View"
+    xmlns:model="using:BJUTDUHelper.Model"
+    xmlns:control="using:BJUTDUHelper.Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+    <Page.Resources>
+        <local:VisibiltyConverter x:Key="VisibiltyConverter"></local:VisibiltyConverter>
+        <local:ReBoolVisibiltyConverter x:Key="ReBoolVisibiltyConverter"></local:ReBoolVisibiltyConverter>
+        <local:BoolVisibiltyConverter x:Key="BoolVisibiltyConverter"></local:BoolVisibiltyConverter>
+        <local:UserinfoConverter x:Key="UserinfoConverter"></local:UserinfoConverter>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource BJUTDUHelperBlackColor}"  >
+
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Width="240" >
+
+                <StackPanel VerticalAlignment="Center" Grid.Row="0">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="Foreground" Value="{ThemeResource BJUTDUHelperTitleColor}"></Setter>
+                        </Style>
+
+                        <Style TargetType="Image" >
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="Width" Value="24"></Setter>
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                        <Storyboard x:Name="imgRotation">
+                            <DoubleAnimation From="0" To=" -180" Storyboard.TargetProperty="RotationZ" Storyboard.TargetName="img1"  RepeatBehavior="Forever"></DoubleAnimation>
+                            <DoubleAnimation From="0" To=" -180" Storyboard.TargetProperty="RotationZ" Storyboard.TargetName="img2" RepeatBehavior="Forever"></DoubleAnimation>
+                            <DoubleAnimation From="0" To=" -180" Storyboard.TargetProperty="RotationZ" Storyboard.TargetName="img3" RepeatBehavior="Forever"></DoubleAnimation>
+                            <DoubleAnimation From="0" To=" -180" Storyboard.TargetProperty="RotationZ" Storyboard.TargetName="img4" RepeatBehavior="Forever"></DoubleAnimation>
+                        </Storyboard>
+                    </StackPanel.Resources>
+                    <Grid>
+                        <ComboBox Header="选择账号" 
+                              SelectedItem="{x:Bind WIFIHelperRegVM.WIFIHelperVM.InfoUser,Mode=TwoWay,Converter={StaticResource UserinfoConverter}}"
+                              ItemsSource="{x:Bind WIFIHelperRegVM.WIFIHelperVM.BJUTInfoCenterUserinfos,Mode=OneWay}" 
+                              BorderBrush="Green" BorderThickness="0,2,0,2" x:Name="cbUserlist" Margin="0,0,0,20" Width="240" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="model:BJUTInfoCenterUserinfo">
+                                    <StackPanel>
+                                        <TextBlock Text="{x:Bind Username,Mode=OneWay}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            
+                        </ComboBox>
+                    </Grid>
+                    <Grid >
+
+                        <TextBlock  VerticalAlignment="Center">
+                            <Run Text="套餐类型:"/>
+                            <Run Text="{x:Bind WIFIHelperRegVM.AccountInfo.FluPackageType,Mode=OneWay}"></Run>
+                        </TextBlock>
+                        <Image  Source="/images/spin_28.png" Visibility="{x:Bind WIFIHelperRegVM.IsGetAccountInfo,Mode=OneWay,Converter={StaticResource BoolVisibiltyConverter}}">
+                            <Image.Projection>
+                                <PlaneProjection CenterOfRotationZ="0.5" x:Name="img1"></PlaneProjection>
+                            </Image.Projection>
+                        </Image>
+                    </Grid>
+                    <Grid  >
+                        <TextBlock>
+                            <Run Text="套餐总量:"></Run>
+                            <Run Text="{x:Bind WIFIHelperRegVM.AccountInfo.TotalFlu,Mode=OneWay}"></Run>
+                        </TextBlock>
+                        <Image   Source="/images/spin_28.png" Visibility="{x:Bind WIFIHelperRegVM.IsGetAccountInfo,Mode=OneWay,Converter={StaticResource BoolVisibiltyConverter}}" >
+                            <Image.Projection>
+                                <PlaneProjection CenterOfRotationZ="0.5" x:Name="img2"></PlaneProjection>
+                            </Image.Projection>
+                        </Image>
+                    </Grid>
+                    <Grid>
+                        <TextBlock>
+                            <Run Text="已使用量:"></Run>
+                            <Run Text="{x:Bind WIFIHelperRegVM.AccountInfo.UsedFlu,Mode=OneWay}"></Run>
+
+                        </TextBlock>
+                        <Image   Source="/images/spin_28.png" Visibility="{x:Bind WIFIHelperRegVM.IsGetAccountInfo,Mode=OneWay,Converter={StaticResource BoolVisibiltyConverter}}">
+                            <Image.Projection>
+                                <PlaneProjection CenterOfRotationZ="0.5" x:Name="img3"></PlaneProjection>
+                            </Image.Projection>
+                        </Image>
+                    </Grid>
+                    <Grid>
+                        <TextBlock>
+                            <Run Text="账户余额:"></Run>
+                            <Run Text="{x:Bind WIFIHelperRegVM.AccountInfo.Balance,Mode=OneWay}"></Run>
+                        </TextBlock>
+                        <Image  Source="/images/spin_28.png" Visibility="{x:Bind WIFIHelperRegVM.IsGetAccountInfo,Mode=OneWay,Converter={StaticResource BoolVisibiltyConverter}}">
+                            <Image.Projection>
+                                <PlaneProjection CenterOfRotationZ="0.5" x:Name="img4"></PlaneProjection>
+                            </Image.Projection>
+                        </Image>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <Button x:Name="btnLogin" Visibility="{x:Bind WIFIHelperRegVM.IsRegisted, Mode=OneWay, Converter={StaticResource ReBoolVisibiltyConverter}}" Width="240"   Grid.Row="1" Content="登录" HorizontalAlignment="Center" Click="{x:Bind WIFIHelperRegVM.Login}" Style="{ThemeResource  GreenButtonStyle}" />
+
+            <Button   x:Name="btnLogout" Content="注销" Visibility="{x:Bind btnLogin.Visibility,Mode=TwoWay,Converter={StaticResource VisibiltyConverter}}" Click="{x:Bind WIFIHelperRegVM.Logout}" HorizontalAlignment="Center" Grid.Row="1"  Width="100" Style="{ThemeResource  RedButtonStyle}"  ></Button>
+            <!--<Button   Foreground="White" Background="#FFF54545" x:Name="btnLogout" Content="注销"  HorizontalAlignment="Center" Grid.Row="1"  Width="100"  ></Button>-->
+
+        </Grid>
+        <CommandBar  VerticalAlignment="Bottom"  ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                
+                <AppBarButton Label="重新选择WIFI" Click="{x:Bind WIFIHelperRegVM.AppBarButton_Click}"></AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        <control:AccountModifyDlg Open="{x:Bind WIFIHelperRegVM.AccountModifyVM.Open,Mode=TwoWay}"
+                                  Username="{x:Bind WIFIHelperRegVM.AccountModifyVM.Username,Mode=TwoWay}"
+                                  Password="{x:Bind WIFIHelperRegVM.AccountModifyVM.Password,Mode=TwoWay}"
+                                  Save="{x:Bind WIFIHelperRegVM.AccountModifyVM.Save,Mode=OneWay}"></control:AccountModifyDlg>
+        <control:ProgressBar x:Name="progressBar" Message="{x:Bind WIFIHelperRegVM.ProgressMessage,Mode=OneWay}" Active="{x:Bind WIFIHelperRegVM.Active,Mode=TwoWay}"></control:ProgressBar>
+    </Grid>
+</Page>

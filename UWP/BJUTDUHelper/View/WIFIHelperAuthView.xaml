@@ -1,0 +1,81 @@
+﻿<Page
+    x:Class="BJUTDUHelper.View.WIFIHelperAuthView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTDUHelper.View"
+    xmlns:model="using:BJUTDUHelper.Model"
+    xmlns:wifi="using:Windows.Devices.WiFi"
+    xmlns:control="using:BJUTDUHelper.Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:TextIconConverter x:Key="TextIconConverter"></local:TextIconConverter>
+        <local:ForegroundConverter x:Key="ForegroundConverter"></local:ForegroundConverter>
+        <local:UserinfoConverter x:Key="UserinfoConverter"></local:UserinfoConverter>
+        
+    </Page.Resources>
+    <Grid Background="{ThemeResource BJUTDUHelperBlackColor}">
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/> 
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" VerticalAlignment="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <ComboBox Margin="0,8,0,12" Header="WIFI列表" BorderBrush="Green" BorderThickness="0,2,0,2"
+                          x:Name="cbWifiList"  Width="240" 
+                          SelectedIndex="{x:Bind WIFIHelperAuthVM.SelectIndex,Mode=TwoWay}" 
+                          ItemsSource="{x:Bind WIFIHelperAuthVM.WIFIService.WifiList,Mode=OneWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="wifi:WiFiAvailableNetwork">
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="4,0,4,0" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="{x:Bind SignalBars,Mode=OneWay,Converter={StaticResource TextIconConverter }}" Foreground="{x:Bind SignalBars,Mode=OneWay,Converter={StaticResource ForegroundConverter}}"/>
+                                <TextBlock Margin="4,0,4,0" VerticalAlignment="Center" Text="{x:Bind Ssid,Mode=OneWay}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <StackPanel Grid.Row="1"  Margin="0,8,0,12" BorderThickness="0,2,0,2" BorderBrush="#FF28C150"  VerticalAlignment="Center">
+                    <RadioButton   Content="校内及校外网" Foreground="{ThemeResource BJUTDUHelperTitleColor}" IsChecked="{x:Bind WIFIHelperAuthVM.IsInternet,Mode=TwoWay}" />
+                    <RadioButton   Content="校内网" Foreground="{ThemeResource BJUTDUHelperTitleColor}" ></RadioButton>
+                </StackPanel>
+                
+                <Grid Margin="0,8,0,12" Grid.Row="2">
+                    <ComboBox Header="选择账号" 
+                              SelectedItem="{x:Bind WIFIHelperAuthVM.WIFIHelperVM.InfoUser,Mode=TwoWay,Converter={StaticResource UserinfoConverter}}"
+                              ItemsSource="{x:Bind WIFIHelperAuthVM.WIFIHelperVM.BJUTInfoCenterUserinfos,Mode=OneWay}"
+                              BorderBrush="Green" BorderThickness="0,2,0,2" x:Name="cbUserlist" Width="240" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="model:BJUTInfoCenterUserinfo">
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Margin="4,0,4,0" VerticalAlignment="Center" Text="{x:Bind Username,Mode=OneWay}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalAlignment="Center">
+                <Button Style="{ThemeResource GreenButtonStyle}" Width="240" Content="连接并认证" HorizontalAlignment="Center" Click="{x:Bind WIFIHelperAuthVM.Connect}"></Button>
+            </Grid>
+
+
+        </Grid>
+        <control:AccountModifyDlg Open="{x:Bind WIFIHelperAuthVM.AccountModifyVM.Open,Mode=TwoWay}" 
+                                  Save="{x:Bind WIFIHelperAuthVM.AccountModifyVM.Save,Mode=OneWay}"
+                                  Username="{x:Bind WIFIHelperAuthVM.AccountModifyVM.Username,Mode=TwoWay}"
+                                  Password="{x:Bind WIFIHelperAuthVM.AccountModifyVM.Password,Mode=TwoWay}"></control:AccountModifyDlg>
+       
+        <control:ProgressBar x:Name="progressBar" Message="{x:Bind WIFIHelperAuthVM.ProgressMessage,Mode=OneWay}" Active="{x:Bind WIFIHelperAuthVM.Active,Mode=TwoWay}"></control:ProgressBar>
+
+    </Grid>
+</Page>

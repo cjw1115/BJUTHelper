@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:converters="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.NewsPage"
+             Title="新闻公告"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeConverter x:Key="DateTimeConverter"></converters:DateTimeConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid  BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Margin="4" FontSize="Medium" Text="{Binding News.Title,Mode=OneWay}"></Label>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="4">
+                <Label TextColor="#ff5b5656" Text="{Binding News.Author,Mode=OneWay,StringFormat='作者：{0}'}" FontSize="Small"></Label>
+                <Label TextColor="#ff5b5656" Text="{Binding News.PostTime,Mode=OneWay,Converter={StaticResource DateTimeConverter}}" FontSize="Small"></Label>
+            </StackLayout>
+            <BoxView Grid.Row="2" Color="#ff5b5656" HeightRequest="1"></BoxView>
+            <WebView  Grid.Row="3" HorizontalOptions="Fill" VerticalOptions="Fill" 
+                      x:Name="webView" views:NewsPage.HtmlSource="{Binding News.Content,Mode=OneWay}}"></WebView>
+
+        </Grid>
+ 
+    </Grid>
+</ContentPage>

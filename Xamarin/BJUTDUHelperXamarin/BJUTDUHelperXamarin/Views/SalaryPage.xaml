@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.SalaryPage"
+             Title="零工工资查询"
+             
+           >
+    <Grid  BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" ></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+      </Grid.RowDefinitions>
+      <StackLayout Orientation="Vertical" Margin="16" Grid.Row="0">
+        <Entry x:Name="tcStudentID" Text="{Binding StudentID,Mode=TwoWay}" Placeholder="学号" HeightRequest="44"></Entry>
+        <Entry x:Name="tcName" Text="{Binding Name,Mode=TwoWay}" Placeholder="姓名" HeightRequest="44" ></Entry>
+
+        <Button x:Name="btnQuery" Command="{Binding QueryCommand}" Text="查询"
+                BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" TextColor="{StaticResource BJUTDUHelperFirstTextForground}"
+            ></Button>
+      </StackLayout>
+      <Grid Grid.Row="1" Margin="12,0,12,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition></ColumnDefinition>
+          <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Text="零工编号" HorizontalTextAlignment="Center" Grid.Column="0"></Label>
+        <Label Text="工资(单位：元)" HorizontalTextAlignment="Center" Grid.Column="1"></Label>
+      </Grid>
+      <ListView x:Name="lvSalary" Grid.Row="2" Margin="12,0,12,0" HasUnevenRows="False" SeparatorVisibility="None"
+                ItemsSource="{Binding Salaries,Mode=OneWay}"
+                BackgroundColor="Transparent">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding SalaryCode}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0"></Label>
+                <Label Text="{Binding Salary}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="1"></Label>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      <Grid Grid.Row="3" Margin="8,4,8,4">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition></ColumnDefinition>
+          <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="1"></RowDefinition>
+          <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <BoxView Color="{StaticResource BJUTDUHelperMainBackground}" HeightRequest="1" Grid.ColumnSpan="2"></BoxView>
+        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Total,StringFormat='合计：{0}'}"></Label>
+      </Grid>
+    </Grid>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+</ContentPage>

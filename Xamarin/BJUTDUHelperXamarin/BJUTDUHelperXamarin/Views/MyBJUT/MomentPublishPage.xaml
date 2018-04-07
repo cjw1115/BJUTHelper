@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             x:Class="BJUTDUHelperXamarin.Views.MyBJUT.MomentPublishPage"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:portable="clr-namespace:PivotPagePortable;assembly=PivotPagePortable"
+             Title="编辑朋友圈">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="发送" Command="{Binding PublishCommand}"/>
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+                <Editor x:Name="tbContent"  Margin="4" Text="{Binding Content,Mode=TwoWay}"  VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                <Label Margin="4,8" InputTransparent="True" x:Name="labelPlaceholder" TextColor="{StaticResource BJUTDUHelperTextHintForground}" Text="分享新鲜事儿"></Label>
+            </Grid>
+            <portable:WrapPanel x:Name="panelImages" Margin="4" ColumnSpacing="4" RowSpacing="4" Grid.Row="1">
+                <mycontrols:ButtonDel x:Name="btnDel" WidthRequest="50" HeightRequest="50" />
+                <mycontrols:ButtonAdd x:Name="btnAdd" WidthRequest="50" HeightRequest="50" />
+            </portable:WrapPanel>
+            <StackLayout Grid.Row="2" Orientation="Vertical" Margin="4,0,4,4">
+                <Label Text="注意：" FontSize="12"/>
+                <Label Text="请勿发布不当言论和图片" FontSize="12"/>
+            </StackLayout>
+        </Grid>
+        <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading,Mode=OneWay}"></mycontrols:ProgressTipBar>
+        
+    </Grid>
+</ContentPage>

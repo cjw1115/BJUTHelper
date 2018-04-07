@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:BJUTDUHelperXamarin.Behaviors"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.EduPage"
+             views:LoadedCommand="{Binding LoadedCommand}"
+             Title="教务中心"
+            >
+  <ContentPage.Resources>
+    <ResourceDictionary>
+            <Style TargetType="Label"  ApplyToDerivedTypes="True">
+                <Setter Property="TextColor" Value="{StaticResource BJUTDUHelperTextGrayForeground}"></Setter>
+            </Style>
+            <converter:SelectedEventArgToParamConverter x:Key="SelectedEventArgToParamConverter"></converter:SelectedEventArgToParamConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <StackLayout>
+            <ListView x:Name="listView" ItemsSource="{Binding EduItems}"
+                SeparatorVisibility="None" 
+                BackgroundColor="Transparent"
+                      RowHeight="70">
+                <ListView.Behaviors>
+                    <b:ListViewSelectedItemBehavior   Command="{Binding ItemClickCommand}" Converter="{StaticResource SelectedEventArgToParamConverter}" />
+        </ListView.Behaviors>
+        <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="30" WidthRequest="70" HeightRequest="70" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                               FontFamily="{StaticResource FontAwesome}" Text="{Binding IconUri}" ></Label>
+                                <Label Grid.Column="1" HeightRequest="70"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand"   Text="{Binding Name}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+
+</ContentPage>

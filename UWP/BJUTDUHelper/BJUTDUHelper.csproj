@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{F7FB96CC-C058-4A22-9C53-C10F5DE7A12F}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BJUTDUHelper</RootNamespace>
+    <AssemblyName>BJUTDUHelper</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>BJUTDUHelper_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Never</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>5358C45BF6454CF3279C5C8D57299BB9A574337F</PackageCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Encode\gb2312.bin" />
+    <None Include="App.config" />
+    <None Include="BJUTDUHelper_StoreKey.pfx" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Combobox.xaml.cs">
+      <DependentUpon>Combobox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\AccountModifyDlg.xaml.cs">
+      <DependentUpon>AccountModifyDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\CheckCodeDlg.xaml.cs">
+      <DependentUpon>CheckCodeDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MessageDlg.xaml.cs">
+      <DependentUpon>MessageDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ProgressBar.xaml.cs">
+      <DependentUpon>ProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ScheduleBlock.xaml.cs">
+      <DependentUpon>ScheduleBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\LocalSetting.cs" />
+    <Compile Include="Encode\DBCSEncoding.cs" />
+    <Compile Include="BJUTDUHelperlException\Exceptions.cs" />
+    <Compile Include="Helper\ImageTool.cs" />
+    <Compile Include="Helper\VisualTreeHelperTool.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160802042105_init.cs" />
+    <Compile Include="Migrations\20160802042105_init.designer.cs">
+      <DependentUpon>20160802042105_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\BJUTDUHelperDbContextModelSnapshot.cs" />
+    <Compile Include="Model\BJUTDUHelperDbContext.cs" />
+    <Compile Include="Model\BJUTEduCenterUserinfo.cs" />
+    <Compile Include="Model\BJUTInfoCenterUserinfo.cs" />
+    <Compile Include="Model\BJUTLibCenterUserinfo.cs" />
+    <Compile Include="Model\CampusCardInfoModel.cs" />
+    <Compile Include="Model\CampusCardNavigationModel.cs" />
+    <Compile Include="Model\CampusCardTransactionItemModel.cs" />
+    <Compile Include="Model\EduTimeModel.cs" />
+    <Compile Include="Model\EduNavigationModel.cs" />
+    <Compile Include="Model\ExamModel.cs" />
+    <Compile Include="Model\GradeChartModel.cs" />
+    <Compile Include="Model\NavigationListItem.cs" />
+    <Compile Include="Model\ScheduleModel.cs" />
+    <Compile Include="Model\ThemeColor.cs" />
+    <Compile Include="Model\UserBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BJUTCampusCardService.cs" />
+    <Compile Include="Service\BJUTEduCenterService.cs" />
+    <Compile Include="Service\DbService.cs" />
+    <Compile Include="Service\FileService.cs" />
+    <Compile Include="Service\HttpBaseService.cs" />
+    <Compile Include="Service\NavigationService.cs" />
+    <Compile Include="Service\SettingService.cs" />
+    <Compile Include="Service\WIFIService.cs" />
+    <Compile Include="Triggers\NavigationViewAdaptiveTrigger.cs" />
+    <Compile Include="ViewModel\AccountModifyVM.cs" />
+    <Compile Include="ViewModel\BJUTCampusCardTransactionVM.cs" />
+    <Compile Include="ViewModel\BJUTCampusCardVM.cs" />
+    <Compile Include="ViewModel\BJUTEduCenterVM.cs" />
+    <Compile Include="ViewModel\BJUTEduExamVM.cs" />
+    <Compile Include="ViewModel\BJUTEduGradeVM.cs" />
+    <Compile Include="ViewModel\BJUTEduScheduleVM.cs" />
+    <Compile Include="ViewModel\CheckCodeVM.cs" />
+    <Compile Include="ViewModel\NavigationVM.cs" />
+    <Compile Include="ViewModel\UserEditVM.cs" />
+    <Compile Include="ViewModel\UserManagerVM.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\WIFIHelperAuthVM.cs" />
+    <Compile Include="ViewModel\WIFIHelperRegVM.cs" />
+    <Compile Include="ViewModel\WIFIHelperVM.cs" />
+    <Compile Include="View\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BJUTCampusCardTransactionView.xaml.cs">
+      <DependentUpon>BJUTCampusCardTransactionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BJUTCampusCardView.xaml.cs">
+      <DependentUpon>BJUTCampusCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BJUTEduCenterView.xaml.cs">
+      <DependentUpon>BJUTEduCenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BJUTEduExamView.xaml.cs">
+      <DependentUpon>BJUTEduExamView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BJUTEduGradeView.xaml.cs">
+      <DependentUpon>BJUTEduGradeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BJUTEduScheduleView.xaml.cs">
+      <DependentUpon>BJUTEduScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DefaultDetailView.xaml.cs">
+      <DependentUpon>DefaultDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView.xaml.cs">
+      <DependentUpon>DetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NavigationView.xaml.cs">
+      <DependentUpon>NavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserEditPage.xaml.cs">
+      <DependentUpon>UserEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserManagerView.xaml.cs">
+      <DependentUpon>UserManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WIFIHelperAuthView.xaml.cs">
+      <DependentUpon>WIFIHelperAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WIFIHelperRegView.xaml.cs">
+      <DependentUpon>WIFIHelperRegView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WIFIHelperView.xaml.cs">
+      <DependentUpon>WIFIHelperView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BJUTDUHelper_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Images\refresh.png" />
+    <Content Include="Images\report.png" />
+    <Content Include="Images\school.png" />
+    <Content Include="Images\shcheduleBackground.png" />
+    <Content Include="Images\spin.png" />
+    <Content Include="Images\spin_28.png" />
+    <Content Include="Images\bjut.png" />
+    <Content Include="Images\test.png" />
+    <Content Include="Images\timetable.png" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Properties\Default.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Combobox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\AccountModifyDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\CheckCodeDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\MessageDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ScheduleBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BJUTCampusCardTransactionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BJUTCampusCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BJUTEduCenterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BJUTEduExamView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BJUTEduGradeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BJUTEduScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DefaultDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WIFIHelperAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WIFIHelperRegView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WIFIHelperView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10240.0%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:b="clr-namespace:BJUTDUHelperXamarin.Behaviors"
+              xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.EduGradePage"
+             Title="成绩查询"
+              
+             >
+   <ContentPage.Resources>
+    <ResourceDictionary>
+      <converter:SelectedEventArgToParamConverter x:Key="SelectedEventArgToParamConverter"></converter:SelectedEventArgToParamConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="加权" Command="{Binding ToGradeInfoCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <Grid VerticalOptions="FillAndExpand" Margin="4,0,4,0">
+      <Grid.RowDefinitions>
+                <RowDefinition  />
+                <RowDefinition Height="auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1*"/>
+        <ColumnDefinition Width="1*"/>
+      </Grid.ColumnDefinitions>
+      <ListView x:Name="lvGrade" 
+                IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}"
+                Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Fill"
+                ItemsSource="{Binding GradeChart.MainList,Mode=OneWay}"
+                SeparatorVisibility="None"
+                BackgroundColor="Transparent">
+        <ListView.Behaviors>
+          <b:ListViewSelectedItemBehavior   Command="{Binding ItemClickCommand}" Converter="{StaticResource SelectedEventArgToParamConverter}" />
+        </ListView.Behaviors>
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid Margin="4,0,0,4">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="3*"></ColumnDefinition>
+                  <ColumnDefinition Width="1*"></ColumnDefinition>
+                  <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" Grid.Column="0"  Text="{Binding Subject,Mode=OneWay}" />
+                <Label VerticalOptions="Center" Grid.Column="1"  Text="{Binding Score,Mode=OneWay}"   />
+                <Label VerticalOptions="Center" Grid.Column="2"  Text="{Binding Credit,Mode=OneWay}"  />
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Header>
+          <Grid Margin="4,0,0,4">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="3*"/>
+              <ColumnDefinition Width="1*"/>
+              <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="20" Grid.Column="0" Text="科目"></Label>
+            <Label FontSize="20" Grid.Column="1" Text="成绩"></Label>
+            <Label FontSize="20" Grid.Column="2" Text="学分"></Label>
+          </Grid>
+        </ListView.Header>
+      </ListView>
+      <mycontrols:BindablePicker x:Name="shcoolYearListPicker"  Title="选择学年" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding GradeChart.SchoolYearList}" SelectedIndex="{Binding SelectedYearIndex,Mode=TwoWay}"></mycontrols:BindablePicker>
+      <mycontrols:BindablePicker Title="选择学期" Grid.Row="1"  Grid.Column="1" ItemsSource="{Binding GradeChart.TermList}" SelectedIndex="{Binding SelectedTermIndex,Mode=TwoWay}"></mycontrols:BindablePicker>
+      
+    </Grid>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+</ContentPage>

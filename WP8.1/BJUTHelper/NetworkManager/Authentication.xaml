@@ -1,0 +1,95 @@
+﻿<Page
+    x:Class="BJUTHelper.Authentication"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTHelper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+    <Page.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="White" Offset="0.2"/>
+            <GradientStop Color="Silver" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
+
+    <Page.BottomAppBar>
+        <CommandBar  ClosedDisplayMode="Compact" >
+            <AppBarButton Icon="Home"    Click="AppBarButton_Click" Label="主页" />
+            <AppBarButton Icon="Accept" x:Name="btnAuthentication" Label="认证" Click="btnLogin_Click"/>
+            <!--<CommandBar.Content>
+                
+                --><!--<AppBarButton Icon=" "  Click="AppBarButton_Click"></AppBarButton>-->
+                <!--<Button x:Name="btnAuthentication"    Click="btnLogin_Click" Content="认证"/>--><!--
+            </CommandBar.Content>-->
+
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="gridMain" Background="Transparent">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Pic/wlantop.png"></ImageBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Name="grid" Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush MappingMode="RelativeToBoundingBox">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="Silver" Offset="0.5"></GradientStop>
+                    <GradientStop Color="Black" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+        <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="cbNetList" Header="WIFI列表"  Grid.Row="0" Grid.ColumnSpan="2"  Height="60" HorizontalAlignment="Stretch" Margin="36,0,36,2" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="25"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock  Text="SSID:"  HorizontalAlignment=" Left"></TextBlock>
+                            <TextBlock Grid.Column="1" Foreground="Red" Text="{Binding Path=Ssid, Mode=OneWay}"></TextBlock>
+
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Text="信号强度:"></TextBlock>
+                            <TextBlock  Grid.Column="3" HorizontalAlignment="Right" Foreground="DodgerBlue" Text="{Binding Path=SignalBars, Mode=OneWay}"></TextBlock>
+                        </Grid>
+
+
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBox x:Name="tbUserName" TabIndex="1" Header="学号" Text="{Binding Path=UserName}" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="60" Margin="36,0,36,2"  Grid.Row="1"/>
+            <PasswordBox x:Name="tbPassword" TabIndex="2" Header="密码" Password="{Binding Path=Password}" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="60" Margin="36,0,36,2" Grid.Row="2"/>
+
+            <StackPanel Background="Transparent"  Name="panelInfo" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="3">
+                <TextBlock x:Name="lbInfo" Text="{Binding Path=ConStatus, Mode=OneWay}" Margin="36,0,36,0"></TextBlock>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+
+</Page>

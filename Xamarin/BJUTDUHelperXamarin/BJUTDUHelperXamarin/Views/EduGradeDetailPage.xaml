@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.EduGradeDetailPage"
+             Title="成绩详情">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <!--<Style TargetType="TextCell">
+        <Setter Property="TextColor" Value="Gray"></Setter>
+      </Style>
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="Gray"></Setter>
+      </Style>-->
+    </ResourceDictionary>
+  </ContentPage.Resources>
+    <TableView  Intent="Form" BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <TableRoot>
+      <TableSection Title="科目">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"   Text="{Binding GradeItem.Subject,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="课程归属">
+        <TextCell  TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding GradeItem.SubjectType,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="学年">
+        <TextCell  TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding GradeItem.SchoolYear,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="学期">
+        <TextCell  TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding GradeItem.Term,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="成绩">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding GradeItem.Score,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="学分">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding GradeItem.Credit,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="补考成绩">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding GradeItem.ReScore,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="重修成绩">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding GradeItem.ReLearnScore,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="辅修标记">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding GradeItem.SecondFlag,Mode=OneWay}"></TextCell>
+      </TableSection>
+    </TableRoot>
+  </TableView>
+</ContentPage>

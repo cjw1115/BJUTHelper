@@ -1,0 +1,24 @@
+﻿<resources>
+  <color name="primary">#2196F3</color>
+  <color name="primaryDark">#1976D2</color>
+  <color name="accent">#FFC107</color>
+  <color name="window_background">#F5F5F5</color>
+  <color name="splash_background">#009fc3</color>
+
+  
+  <color name="transparent">#00000000</color>
+
+  <color name="White">#ffffff</color>
+  <color name="red">#ff0000</color>
+  <color name="green">#00ff00</color>
+  
+  <color name="listpressedcolor">#a8939393</color>
+  <color name="BJUTDUHelperSecondTextForground">#545454</color>
+  <color name="BJUTDUHelperMainBackground">#1D91FF</color>
+  <color name="BJUTDUHelperSelectedBackground">#68b6ff</color>
+  <color name="BJUTDUHelperMainTitleForeground">#0997F7</color>
+  <color name="BJUTDUHelperBlackBackground">#fafafa</color>
+
+  <color name="linkbuttonpressed">#553727</color>
+  <color name="linkbuttonnormal">#f38f5c</color>
+</resources>

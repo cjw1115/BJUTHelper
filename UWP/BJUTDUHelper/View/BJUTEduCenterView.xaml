@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="BJUTDUHelper.View.BJUTEduCenterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTDUHelper.View"
+    xmlns:model="using:BJUTDUHelper.Model"
+    xmlns:control="using:BJUTDUHelper.Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <local:ReBoolVisibiltyConverter x:Key="ReBoolVisibiltyConverter"></local:ReBoolVisibiltyConverter>
+        <local:BoolVisibiltyConverter x:Key="BoolVisibiltyConverter"></local:BoolVisibiltyConverter>
+    </Page.Resources>
+    <Grid Background="{ThemeResource BJUTDUHelperBlackColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <ListView Margin="24" ItemsSource="{x:Bind BJUTEduCenterVM.EduNavigationList}"  IsItemClickEnabled="True"
+                  ItemClick="{x:Bind BJUTEduCenterVM.ItemClick}"  >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal"></ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:EduNavigationModel">
+                    <Grid>
+                        <StackPanel Margin="16" Orientation="Vertical">
+                            <Image HorizontalAlignment="Center" Width="80" Height="80" Source="{x:Bind IconUri}"></Image>
+                            <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource BJUTDUHelperTitleColor}" Text="{x:Bind Name}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Margin="12">
+            <TextBlock Foreground="{ThemeResource BJUTDUHelperBaseBackgroundThemeColor}" Text="已连接到校园网" Visibility="{x:Bind BJUTEduCenterVM.IsConnected, Converter={StaticResource BoolVisibiltyConverter} ,Mode=OneWay}"></TextBlock>
+            <TextBlock Foreground="Red" Text="尚未连接到校园网" Visibility="{x:Bind BJUTEduCenterVM.IsConnected, Converter={StaticResource ReBoolVisibiltyConverter},Mode=OneWay}"></TextBlock>
+        </Grid>
+
+        <control:AccountModifyDlg Open="{x:Bind BJUTEduCenterVM.AccountModifyVM.Open,Mode=TwoWay}" 
+                                  Save="{x:Bind BJUTEduCenterVM.AccountModifyVM.Save }"
+                                  Username="{x:Bind BJUTEduCenterVM.AccountModifyVM.Username,Mode=TwoWay}"
+                                  Password="{x:Bind BJUTEduCenterVM.AccountModifyVM.Password,Mode=TwoWay}"></control:AccountModifyDlg>
+        <control:CheckCodeDlg Open="{x:Bind BJUTEduCenterVM.CheckCodeVM.OpenCheckCodeDlg,Mode=TwoWay}" 
+                              ImageSource="{x:Bind BJUTEduCenterVM.CheckCodeVM.CheckCodeSource,Mode=OneWay}"
+                              CheckCode="{x:Bind BJUTEduCenterVM.CheckCodeVM.CheckCode,Mode=TwoWay}" 
+                              Saved="{x:Bind BJUTEduCenterVM.CheckCodeVM.Save }"
+                              Refresh="{x:Bind BJUTEduCenterVM.CheckCodeVM.Refresh}"></control:CheckCodeDlg>
+        <Grid Grid.Row="2">
+            <CommandBar ClosedDisplayMode="Minimal">
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton Label="切换账号" Click="{x:Bind BJUTEduCenterVM.ChangeUser}"></AppBarButton>
+                </CommandBar.SecondaryCommands>
+            </CommandBar>
+        </Grid>
+    </Grid>
+</Page>

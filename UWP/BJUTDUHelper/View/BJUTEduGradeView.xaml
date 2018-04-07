@@ -1,0 +1,154 @@
+﻿<Page
+    x:Class="BJUTDUHelper.View.BJUTEduGradeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTDUHelper.View"
+    xmlns:model="using:BJUTDUHelper.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+   >
+    <Page.Resources>
+        <local:PassColorValueConverter x:Key="PassColorValueConverter"></local:PassColorValueConverter>
+    </Page.Resources>
+    <Grid Background="{ThemeResource BJUTDUHelperBlackColor}">
+        <Grid  >
+            <Grid.Resources>
+                
+                <DataTemplate x:DataType="model:TRData" x:Key="dataTemplateSelectKey" x:Name="dataTemplateSelectName">
+                    <Grid  Tapped="Grid_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0"  Text="科目" TextAlignment="Justify" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Bind Path=Subject,Mode=OneWay}"  TextWrapping="Wrap"></TextBlock>
+
+                        <TextBlock Grid.Row="1" Text="课程归属" TextAlignment="Justify" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Bind Path=SubjectType,Mode=OneWay}" />
+
+                        <TextBlock Grid.Row="2" Text="学年" TextAlignment="Justify" ></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="{x:Bind Path=SchoolYear,Mode=OneWay}"/>
+
+                        <TextBlock Grid.Row="3" Text="学期" TextAlignment="Justify" ></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{x:Bind Path=Term,Mode=OneWay}"/>
+
+                        <TextBlock Grid.Row="4" Text="成绩" TextAlignment="Justify" ></TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="2" Text="{x:Bind Path=Score,Mode=OneWay}"/>
+
+                        <TextBlock Grid.Row="5" Text="学分" TextAlignment="Justify" ></TextBlock>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="5" Grid.Column="2" Text="{x:Bind Path=Credit,Mode=OneWay}"></TextBlock>
+
+                        <TextBlock Grid.Row="6" Text="补考成绩" TextAlignment="Justify" ></TextBlock>
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="6" Grid.Column="2" Text="{x:Bind Path=ReScore,Mode=OneWay}" />
+
+                        <TextBlock Grid.Row="7" Text="重修成绩" TextAlignment="Justify" />
+                        <TextBlock Grid.Row="7" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="7" Grid.Column="2" Text="{x:Bind Path=ReLearnScore,Mode=OneWay}" />
+                        
+                        <TextBlock Grid.Row="8" Text="辅修标记" TextAlignment="Justify" />
+                        <TextBlock Grid.Row="8" Grid.Column="1" Text="："></TextBlock>
+                        <TextBlock Grid.Row="8" Grid.Column="2" Text="{x:Bind Path=SecondFlag,Mode=OneWay}" />
+
+                    </Grid>
+                </DataTemplate>
+
+                <DataTemplate  x:DataType="model:TRData" x:Key="dataTemplateDefaultKey" x:Name="dataTemplateDefaultName">
+                    <Grid Name="gridbaba" Tapped="Grid_Tapped"  HorizontalAlignment="Stretch" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"  Foreground="{x:Bind Score, Converter={StaticResource PassColorValueConverter},Mode=OneWay}" Text="{x:Bind Subject,Mode=OneWay}" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Grid.Column="1"  Foreground="{x:Bind Score, Converter={StaticResource PassColorValueConverter},Mode=OneWay}" Text="{x:Bind Score,Mode=OneWay}"   />
+                        <TextBlock Grid.Column="2"  Foreground="{x:Bind Score, Converter={StaticResource PassColorValueConverter},Mode=OneWay}" Text="{x:Bind Credit,Mode=OneWay}" ></TextBlock>
+                    </Grid>
+                    
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                <Grid Background="{ThemeResource BJUTDUHelperBaseBackgroundThemeColor}">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="44"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock VerticalAlignment="Bottom" Foreground="{ThemeResource BJUTDUHelperBaseForegroundThemeColor}"  Name="header1" Text="科目" FontSize="20" Grid.Column="0" Margin="8,0,0,0"></TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" Foreground="{ThemeResource BJUTDUHelperBaseForegroundThemeColor}"  Name="header2" Text="成绩" FontSize="20" Grid.Column="1"></TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" Foreground="{ThemeResource BJUTDUHelperBaseForegroundThemeColor}"  Name="header3" Text="学分" FontSize="20" Grid.Column="2"></TextBlock>
+
+                </Grid>
+                <ListView  Grid.Row="1"  Name="lvGrade"  
+                       ItemsSource="{x:Bind BJUTEduGradeVM.GradeChart.MainList,Mode=OneWay}" 
+                       SelectionMode="Single" AllowDrop="True" CanDragItems="True" IsSwipeEnabled="True"
+                       ItemTemplate="{StaticResource dataTemplateDefaultKey}"
+                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                   
+                </ListView>
+            </Grid>
+            <Grid  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="cbSchoolYear" Foreground="{ThemeResource BJUTDUHelperTitleColor}"  ItemsSource="{x:Bind BJUTEduGradeVM.GradeChart.SchoolYearList,Mode=OneWay}" SelectedItem="{x:Bind BJUTEduGradeVM.SelectedYear,Mode=TwoWay}" SelectionChanged="{x:Bind BJUTEduGradeVM.cbSchoolYear_SelectionChanged}" PlaceholderText="选择学年" Grid.Column="0" HorizontalAlignment="Stretch" Margin="8,4,8,0"  />
+                <ComboBox x:Name="cbTerm" Foreground="{ThemeResource BJUTDUHelperTitleColor}"  ItemsSource="{x:Bind BJUTEduGradeVM.GradeChart.TermList,Mode=OneWay}" SelectedIndex="{x:Bind BJUTEduGradeVM.SelectedTermIndex,Mode=TwoWay}"  SelectionChanged="{x:Bind BJUTEduGradeVM.cbTerm_SelectionChanged}" PlaceholderText="选择学期" Grid.Column="1" HorizontalAlignment="Stretch"  Margin="8,4,8,0" />
+            </Grid>
+            <Grid Grid.Row="2"  >
+                <StackPanel>
+                    <TextBlock Name="tbkWeightScore" Foreground="{ThemeResource BJUTDUHelperTitleColor}" 
+                           FontSize="12" Margin="4" Text="{x:Bind BJUTEduGradeVM.WeightScore,Mode=OneWay}">
+                    选择具体<Run Foreground="Red">学年</Run>和<Run Foreground="Red">学期</Run>计算加权成绩
+                    </TextBlock>
+                    <TextBlock Margin="4" TextWrapping="WrapWholeWords" Foreground="{ThemeResource BJUTDUHelperTitleColor}"  Text="加权成绩=Σ单科成绩*学分/总学分（精确至小数点后三位）"></TextBlock>
+                </StackPanel>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

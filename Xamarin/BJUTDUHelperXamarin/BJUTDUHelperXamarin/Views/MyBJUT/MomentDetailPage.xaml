@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views.MyBJUT"
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             x:Class="BJUTDUHelperXamarin.Views.MyBJUT.MomentDetailPage"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:portable="clr-namespace:PivotPagePortable;assembly=PivotPagePortable"
+             Title="朋友圈">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="CommentItemTeplate">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="2">
+                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="Start">
+                        <Label  FontSize="10" Text="{Binding Nickname,Converter={StaticResource CommentUserNicknameConverter}}" ></Label>
+                        <Label Margin="2,0,0,0"  FontSize="10" Text="{Binding Content}" ></Label>
+                    </StackLayout>
+                    <Label HorizontalOptions="End" VerticalOptions="Center" FontSize="10" Text="{Binding PostedTime,Converter={StaticResource DateConverter}}" ></Label>
+                </Grid>
+
+            </DataTemplate>
+            <views:DateToStringConverter x:Key="DateConverter"></views:DateToStringConverter>
+            <views:NicknameConverter x:Key="MomentUserNicknameConverter" HasSemicolon="False" HasAt="False"></views:NicknameConverter>
+            <views:NicknameConverter x:Key="CommentUserNicknameConverter" HasSemicolon="True" HasAt="False"></views:NicknameConverter>
+            <views:PlaceholderConverter x:Key="PlaceholderConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>
+    <Grid BackgroundColor="#EFEFEF">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <views:MomentsListView x:Name="lvItems" Grid.Row="0"  HasUnevenRows="True"  SeparatorVisibility="None" BackgroundColor="Transparent" 
+                                   CanLoadMore="{Binding CanLoadMore}" LoadMoreCommand="{Binding LoadMoreCommand}" IsLoadingMore="{Binding IsLoadingMore}"
+                                   IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}"
+                                   ItemsSource="{Binding MomentComments}" TappedCommand="{Binding ItemTappedCommand}">
+                <views:MomentsListView.SeparatorVisibility>
+                    <OnPlatform x:TypeArguments="SeparatorVisibility" >
+                        <OnPlatform.iOS>None</OnPlatform.iOS>
+                        <OnPlatform.Android>Default</OnPlatform.Android>
+                    </OnPlatform>
+                </views:MomentsListView.SeparatorVisibility>
+                <views:MomentsListView.Header>
+                    <StackLayout BackgroundColor="#ffffff" Margin="0,4,0,4" Padding="4,0,4,0"  HorizontalOptions="Fill" Spacing="0">
+                        <Grid HeightRequest="40" Grid.Row="1" ColumnSpacing="0" RowSpacing="0" Padding="0,0,0,4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Moment.Avatar,Converter={StaticResource AvatarConverter}}" Margin="4,0" WidthRequest="40" HeightRequest="40" Aspect="AspectFill" Grid.RowSpan="2" Grid.Column="0"/>
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" Text="{Binding Moment.Nickname,Converter={StaticResource MomentUserNicknameConverter}}" TextColor="{StaticResource BJUTDUHelperMainTitleForeground}"/>
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" Text="{Binding Moment.PostTime,Converter={StaticResource DateConverter}}"/>
+                        </Grid>
+                        <StackLayout Padding="4,8,4,8" Orientation="Vertical" Grid.Row="0" Spacing="0">
+                            <Label Margin="0,0,0,4" HorizontalOptions="StartAndExpand" Text="{Binding Moment.Content}" TextColor="{StaticResource BJUTDUHelperTextGrayForeground}"/>
+                            <mycontrols:UniformImagePanel ItemClicked="UniformImagePanel_ItemClicked" ItemsSource="{Binding Moment.ImgUri}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </views:MomentsListView.Header>
+                <views:MomentsListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#f4f4f4" Padding="4,0,4,0"  HorizontalOptions="Fill" Spacing="0">
+                                <Grid HeightRequest="40" Grid.Row="1" ColumnSpacing="0" RowSpacing="0" Padding="0,0,0,4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Avatar,Converter={StaticResource AvatarConverter}}" Margin="4,0" WidthRequest="40" HeightRequest="40" Aspect="AspectFill" Grid.RowSpan="2" Grid.Column="0"/>
+
+                                    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" Text="{Binding Nickname,Converter={StaticResource MomentUserNicknameConverter}}" TextColor="{StaticResource BJUTDUHelperMainTitleForeground}"/>
+                                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" Text="{Binding PostedTime,Converter={StaticResource DateConverter}}"/>
+
+                                </Grid>
+                                <StackLayout Padding="4,8,4,8" Orientation="Vertical" Grid.Row="0" Spacing="0">
+                                    <Label Margin="0,0,0,4" HorizontalOptions="StartAndExpand" Text="{Binding Content}" TextColor="{StaticResource BJUTDUHelperTextGrayForeground}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </views:MomentsListView.ItemTemplate>
+            </views:MomentsListView>
+            <Grid Grid.Row="1" BackgroundColor="#ffffff" Margin="4,2" MinimumHeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <!--<Editor HorizontalOptions="Fill"  Grid.Column="0" BackgroundColor="Red"  Text="{Binding CommentContent,Mode=TwoWay}"></Editor>-->
+                <mycontrols:EntryExpand  Text="{Binding CommentContent,Mode=TwoWay}" Placeholder="{Binding SelectedUser,Converter={StaticResource PlaceholderConverter}}" VerticalOptions="End" HorizontalOptions="Fill"  Grid.Column="0"/>
+                <!--<mycontrols:EntryExpand  HorizontalOptions="Fill"  Grid.Column="0"/>-->
+                <mycontrols:LinkButton Command="{Binding CommentCommand}" WidthRequest="30" Grid.Column="1" Margin="4,0" Text="评论" HorizontalOptions="Center" VerticalOptions="End"></mycontrols:LinkButton>
+            </Grid>
+        </Grid>
+        <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading,Mode=OneWay}"></mycontrols:ProgressTipBar>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.CampusCardTransactionDeatilPage"
+             Title="一卡通消费详情">
+    <TableView  Intent="Menu" BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <TableRoot>
+      <TableSection Title="交易类型">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding TransactionItem.smtDealName ,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="交易时间">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding TransactionItem.smtDealDateTimeTxt,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="交易金额">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding TransactionItem.smtTransMoney,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="当前余额">
+        <TextCell TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  Text="{Binding TransactionItem.smtOutMoney,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="交易地点">
+        <TextCell  TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding TransactionItem.smtOrgName,Mode=OneWay}"></TextCell>
+      </TableSection>
+      <TableSection Title="机器编号">
+        <TextCell  TextColor="{StaticResource BJUTDUHelperSecondTextForground}" Text="{Binding TransactionItem.machineId,Mode=OneWay}"></TextCell>
+      </TableSection>
+    </TableRoot>
+  </TableView>
+
+
+</ContentPage>

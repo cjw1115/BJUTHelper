@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
+             xmlns:converter="clr-namespace:BJUTDUHelperXamarin.ValueConverters"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             xmlns:models="clr-namespace:BJUTDUHelperXamarin.Models.MyBJUT"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.MyBJUT.UserEditPage"
+             AvatarPath="{Binding AvatarPath,Mode=OneWayToSource}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:EnumConverter x:Key="GenderConverter" x:TypeArguments="models:Gender"/>
+
+            <converter:EnumConverter x:Key="CollegeConverter" x:TypeArguments="models:BJUTCollege"/>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BJUTDUHelperSecondTextForground}"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid >
+            <ScrollView Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <mycontrols:ItemsControl>
+                    <Grid Padding="20,8" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label InputTransparent="True" VerticalOptions="Center" Text="头像"/>
+                        <Image Grid.Column="1" x:Name="imgAvatar" Source="{Binding Userinfo.Avatar,Converter={StaticResource AvatarConverter}}" WidthRequest="50" HeightRequest="50" HorizontalOptions="Start"/>
+                        <BoxView Margin="0,0,0,-8" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />
+                    </Grid>
+                    <Grid Padding="20,8"  HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label VerticalOptions="Center" Text="昵称" InputTransparent="True"/>
+                        <Entry VerticalOptions="Center" Grid.Column="1" Placeholder="昵称" Text="{Binding Userinfo.NickName,Mode=TwoWay}"/>
+                        <BoxView Margin="0,0,0,-8" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />
+
+                    </Grid>
+                    <Grid Padding="20,8"  HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label VerticalOptions="Center" Text="学院" InputTransparent="True"/>
+                        <Picker VerticalOptions="Center" Grid.Column="1" Title="学院"  SelectedItem="{Binding Userinfo.College,Mode=TwoWay,Converter={StaticResource CollegeConverter}}"
+                        ItemsSource="{Binding CollegeList,Mode=Default}"/>
+
+                        <BoxView Margin="0,0,0,-8" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />
+                    </Grid>
+                    <Grid Padding="20,8" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label VerticalOptions="Center" Text="性别" InputTransparent="True"/>
+                        <Picker VerticalOptions="Center" Grid.Column="1" Title="性别" SelectedItem="{Binding Userinfo.Gender,Mode=TwoWay,Converter={StaticResource GenderConverter}}"
+                        ItemsSource="{Binding GenderList,Mode=Default}"/>
+                        <BoxView Margin="0,0,0,-8" Grid.ColumnSpan="2" HeightRequest="1" BackgroundColor="#efefef" Color="#efefef" HorizontalOptions="Fill" VerticalOptions="End" />
+                    </Grid>
+
+                    <Grid Padding="20,8" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Button HeightRequest="40" Text="修改" HorizontalOptions="Fill" BackgroundColor="{StaticResource BJUTDUHelperMainBackground}" TextColor="{StaticResource BJUTDUHelperFirstTextForground}" 
+                        Command="{Binding SubmitCommand}"></Button>
+                    </Grid>
+                </mycontrols:ItemsControl>
+            </ScrollView>
+
+        </Grid>
+        <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+    </Grid>
+</ContentPage>

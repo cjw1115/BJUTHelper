@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:BJUTDUHelperXamarin.Views"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.EduSchedulePage"
+             views:EduSchedulePage.Schedule="{Binding Schedule,Mode=OneWay}"
+             Title="课程表"
+              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="刷新" Command="{Binding RefreshCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource" >
+                    <OnPlatform.Android>refresh.png</OnPlatform.Android>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <Grid x:Name="scheduleGrid" RowSpacing="0">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+
+            <Grid x:Name="gridSchedule" VerticalOptions="FillAndExpand"  RowSpacing="0" ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Label">
+                            <Setter Property="Margin" Value="2"></Setter>
+                        </Style>
+
+                    </ResourceDictionary>
+                </Grid.Resources>
+                <Image Source="schedulebg.png" Grid.RowSpan="13" Grid.ColumnSpan="8" Aspect="Fill"></Image>
+                <Grid Grid.Row="0" Grid.ColumnSpan="8" >
+                </Grid>
+
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" Text=""/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" Text="周一"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" Text="周二"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" Text="周三"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" Text="周四"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="5" Text="周五"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="6" Text="周六"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="7" Text="周日"/>
+
+
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="1"  Text="1"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="2"  Text="2"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="3"  Text="3"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="4"  Text="4"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="5"  Text="5"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="6"  Text="6"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="7"  Text="7"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center"  Grid.Row="8"  Text="8"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center" Grid.Row="9"  Text="9"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center" Grid.Row="10" Text="10"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center" Grid.Row="11" Text="11"/>
+                <Label TextColor="{StaticResource BJUTDUHelperMainBackground}" HorizontalOptions="Center"  VerticalOptions="Center" Grid.Row="12" Text="12"/>
+                
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,4,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <mycontrols:BindablePicker Title="学年" BackgroundColor="Transparent" TextColor="{StaticResource BJUTDUHelperSecondTextForground}"  VerticalOptions="Center" Grid.Column="0" ItemsSource="{Binding ShoolYears}" SelectedIndex="{Binding SelectedSchoolYearIndex,Mode=TwoWay}"></mycontrols:BindablePicker>
+                <mycontrols:BindablePicker Title="学期" BackgroundColor="Transparent" TextColor="{StaticResource BJUTDUHelperSecondTextForground}" VerticalOptions="Center" Grid.Column="1" ItemsSource="{Binding Terms}" SelectedIndex="{Binding SelectedTermIndex,Mode=TwoWay}"></mycontrols:BindablePicker>
+                <!--<mycontrols:BindablePicker  Title="教学周" BackgroundColor="Transparent" TextColor="{StaticResource BJUTDUHelperSecondTextForground}"   VerticalOptions="Center" x:Name="pickerWeek" Grid.Column="2" ItemsSource="{Binding Schedule.Weeks}" SelectedIndex="{Binding Schedule.SelectedWeekIndex,Mode=TwoWay}"></mycontrols:BindablePicker>-->
+                <Picker Title="教学周" BackgroundColor="Transparent" TextColor="{StaticResource BJUTDUHelperSecondTextForground}"   VerticalOptions="Center" x:Name="pickerWeek" Grid.Column="2" ItemsSource="{Binding Weeks,Mode=OneWay}" SelectedIndex="{Binding SelectedWeekIndex,Mode=TwoWay}"></Picker>
+            </Grid>
+        </Grid>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+</ContentPage>

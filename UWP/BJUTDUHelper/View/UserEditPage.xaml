@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="BJUTDUHelper.View.UserEditPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTDUHelper.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="32"></Setter>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource BJUTDUHelperBaseBackgroundThemeColor}"></Setter>
+
+            
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Height" Value="32"></Setter>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource BJUTDUHelperBaseBackgroundThemeColor}"></Setter>
+
+            
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource  GreenButtonStyle}">
+        </Style>
+        <Style TargetType="Border"  >
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="0"></Setter>
+            <Setter Property="Margin" Value="4"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource BJUTDUHelperBaseBackgroundThemeColor}"></Setter>
+
+        </Style>
+    </Page.Resources>
+    <Grid Background="{ThemeResource BJUTDUHelperBlackColor}">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <TextBlock FontSize="30" Text="{x:Bind UserEditVM.Title,Mode=OneWay}"></TextBlock>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                
+                <TextBlock Text="账号"/>
+                <Border  >
+                    <TextBox PlaceholderText="请输入账号" Text="{x:Bind UserEditVM.Username,Mode=TwoWay}"/>
+                </Border>
+                
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Vertical">
+                <TextBlock Text="账号"/>
+                <Border>
+                    <PasswordBox  PlaceholderText="请输入密码" Password="{x:Bind UserEditVM.Password,Mode=TwoWay}"/>
+
+                </Border>
+            </StackPanel>
+            <Grid Grid.Row="3">
+                <Button Content="保存" HorizontalAlignment="Stretch" Click="{x:Bind UserEditVM.Save}"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

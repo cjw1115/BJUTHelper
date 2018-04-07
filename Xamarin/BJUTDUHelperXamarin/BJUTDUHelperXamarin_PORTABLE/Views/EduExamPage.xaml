@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:mycontrols="clr-namespace:BJUTDUHelperXamarin.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BJUTDUHelperXamarin.Views.EduExamPage"
+             Title="考试详情"
+              >
+    <Grid BackgroundColor="{StaticResource BJUTDUHelperBlackBackground}">
+    <Grid >
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="auto"/>
+      </Grid.RowDefinitions>
+      <ListView x:Name="listView" Grid.Row="0" 
+              ItemsSource="{Binding ExamList,Mode=OneWay}"
+                 HasUnevenRows="True"
+                SeparatorVisibility="None"
+                BackgroundColor="Transparent"
+             >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="8,0,8,0" Padding="0,4,0,4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0">科目</Label>
+                                <Label Grid.Row="0" Grid.Column="1">：</Label>
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding CourseName,Mode=OneWay}"/>
+                                <Label Grid.Row="1" Grid.Column="0">时间</Label>
+                                <Label Grid.Row="1" Grid.Column="1">：</Label>
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Time,Mode=OneWay}"  />
+                                <Label Grid.Row="2" Grid.Column="0">教室</Label>
+                                <Label Grid.Row="2" Grid.Column="1">：</Label>
+                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding Address,Mode=OneWay}"/>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <StackLayout Grid.Row="1"  Margin="8,0,8,0">
+        <Label TextColor="Red">注意：</Label>
+        <Label >1.具体考试科目及时间地点可能会有变动，请以老师通知为准</Label>
+        <Label >
+          2.部分考试科目并不会出现在此列表中，请以老师通知为准</Label>
+      </StackLayout>
+
+    </Grid>
+    <mycontrols:ProgressTipBar IsVisible="{Binding IsLoading}"></mycontrols:ProgressTipBar>
+  </Grid>
+</ContentPage>

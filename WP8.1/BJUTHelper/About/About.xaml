@@ -1,0 +1,130 @@
+﻿<Page
+    x:Class="BJUTHelper.About.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BJUTHelper.About"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded" >
+    <Page.Background>
+        <ImageBrush Opacity="0.8" ImageSource="/Pic/bg.jpg"></ImageBrush>
+    </Page.Background>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Home" Label="主页" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Page.Resources>
+        <Storyboard x:Name="storyBoardText">
+            <DoubleAnimation Storyboard.TargetName="transLeft" Storyboard.TargetProperty="X"
+                             From="-180" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"></SineEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="trans1" Storyboard.TargetProperty="X"
+                             From="180" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"></SineEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="trans2" Storyboard.TargetProperty="X"
+                             From="-180" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"></SineEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="trans3" Storyboard.TargetProperty="X"
+                             From="180" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"></SineEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="tranBottom" Storyboard.TargetProperty="Y"
+                             From="180" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"></SineEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.Resources>
+                <Storyboard x:Name="storyBoard">
+                    <DoubleAnimation  Storyboard.TargetName="planeProjection" Storyboard.TargetProperty="RotationY"
+                                    From="0" To=" 360"  AutoReverse="True" Duration="0:0:0.5">
+                        <DoubleAnimation.EasingFunction>
+                            <BackEase EasingMode="EaseInOut"></BackEase>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Grid.Resources>
+            <TextBlock Text="工大助手" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFC0C0BC" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+
+                <TextBlock.Projection>
+                    <PlaneProjection x:Name="planeProjection"></PlaneProjection>
+                </TextBlock.Projection>
+            </TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Width="320">
+                <TextBlock Margin="12" TextWrapping="WrapWholeWords" >
+                    <TextBlock.Text>
+                        工大助手服务于工大师生。制作工大助手的目的在于学习，强化计算机技能，服务工大。所以我们诚挚的邀请热爱计算机技术的你加入我们，共同学习进步！
+                    </TextBlock.Text>
+                </TextBlock>
+            </Grid>
+
+            <StackPanel Grid.Row="1">
+                <Grid>
+                    <Grid.RenderTransform>
+                        <TranslateTransform x:Name="transLeft"></TranslateTransform>
+                    </Grid.RenderTransform>
+                    <TextBlock  Text="联系微信" HorizontalAlignment="Center"></TextBlock>
+
+                </Grid>
+                <TextBox Background="Transparent"   BorderThickness="0" x:Name="tbName1" Text="cjw1115" IsReadOnly="True" HorizontalAlignment="Center">
+                    <TextBox.RenderTransform>
+                        <TranslateTransform x:Name="trans1"  ></TranslateTransform>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <TextBlock Text="我们的网站" HorizontalAlignment="Center">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform x:Name="trans2"></TranslateTransform>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <HyperlinkButton HorizontalAlignment="Center" NavigateUri="http://www.cjw1115.com/bjuthelper/index" Content="www.cjw1115.com">
+                    <HyperlinkButton.RenderTransform>
+                        <TranslateTransform x:Name="trans3"></TranslateTransform>
+                    </HyperlinkButton.RenderTransform>
+                </HyperlinkButton>
+            </StackPanel>
+
+            <Grid Grid.Row="2" >
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="tranBottom"></TranslateTransform>
+                </Grid.RenderTransform>
+                <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Center" Text="进取无止境，未来更精彩"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
