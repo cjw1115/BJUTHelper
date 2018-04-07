@@ -5,6 +5,13 @@ Repos "BJUTHelper"  contains tree types project, WP8.1, UWP and Xamarin.Forms
 
 ![最新工大助手图标](https://github.com/cjw1115/BJUTHelper/blob/master/Xamarin/BJUTDUHelperXamarin/BJUTDUHelperXamarin.Droid/Resources/drawable/icon.png)
 
+## 依赖项目
+
+* 工大助手如何在外网使用教务系统？
+  请看 [反向代理工大教务系统](https://github.com/cjw1115/Reverse-Proxy-BJUT-edu)
+  
+## 工大助手项目详情
+
 这个Repos里面一共有三个项目，分别是针对 WP8.1、uwp 和 Xamarin 这三个平台，框架。
 
 1.早期的是WP8.1,这个目录下面的文件都比较旧，里面的一些parser都已经过时了，放在这儿就是纪念一下；
